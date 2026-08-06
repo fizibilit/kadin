@@ -60,7 +60,28 @@ export const typology = [
     key: "eylem",
     title: "Eylem Temelli Tipoloji",
     subtitle: "Şiddet nasıl gerçekleşiyor?",
-    items: ["Fiziksel", "Duygusal", "Ekonomik", "Cinsel", "Sembolik", "Yazılı–Sözlü"],
+    // Kaynak: ANALİZ DOSYASI/EYLEM TÜRLERİNE GÖRE.xlsx — her sheet'in "Açıklama" sütunundan,
+    // içeriğe sadık kalınarak alınmıştır. Alıntıların tamamı (708 kayıt) boyut nedeniyle
+    // burada değil, /public/data/eylem-alintilar.json içinde tutulur ve modal açıldığında
+    // ilgili kategoriye göre çekilir (bkz. TypologyCard.tsx).
+    quotesSource: "/data/eylem-alintilar.json",
+    groups: [
+      { category: "Fiziksel", definition: "Kadının bedenine yönelik saldırılar" },
+      {
+        category: "Duygusal",
+        definition: "Kadının duygularını, özgüvenini hedef alan şiddet",
+      },
+      {
+        category: "Ekonomik",
+        definition: "Kadının parasal veya maddi kaynaklarının kontrolü",
+      },
+      { category: "Cinsel", definition: "Kadının cinselliği üzerinde baskı veya zorlama" },
+      { category: "Yazılı–Sözlü", definition: "Söylem ve dil üzerinden şiddet" },
+      {
+        category: "Sembolik",
+        definition: "Kültürel, dini veya toplumsal sembollerle baskı",
+      },
+    ],
   },
   {
     key: "fail",
