@@ -15,13 +15,24 @@ export default function Impact() {
 
       <div className="mt-12 grid gap-4 sm:grid-cols-4">
         {outputs.map((o, i) => (
-          <Reveal key={o.label} delay={i * 80}>
-            <div className="h-full rounded-2xl border border-gold-light/40 bg-parchment-dark/30 p-6 text-center">
+          <Reveal key={o.label} delay={i * 80} className="sm:col-span-1">
+            <a
+              href="#arsiv"
+              className="block h-full rounded-2xl border border-gold-light/40 bg-parchment-dark/30 p-6 text-center transition-colors hover:border-gold"
+            >
               <p className="font-display text-4xl font-semibold text-maroon">{o.value}</p>
               <p className="mt-2 text-sm text-ink-soft">{o.label}</p>
-            </div>
+              <p className="mt-1 text-xs font-semibold text-gold">İncele →</p>
+            </a>
           </Reveal>
         ))}
+        <div className="hidden sm:col-span-3 sm:flex items-center px-2 text-sm text-ink-soft/70">
+          Bilimsel yayınlar (makale, tez, kitap) artık{" "}
+          <a href="#ciktilar" className="ml-1 font-semibold text-maroon hover:underline">
+            Proje Çıktıları
+          </a>
+          &nbsp;bölümünde, bağlantılarıyla birlikte listeleniyor.
+        </div>
       </div>
 
       <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_1fr]">

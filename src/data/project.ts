@@ -87,19 +87,78 @@ export const typology = [
     key: "fail",
     title: "Faile Göre Tipoloji",
     subtitle: "Şiddeti kim uyguluyor?",
-    items: ["Toplum", "Erkek Figürü", "Kadın Figürü (hemcins)", "Kurumlar", "Medya"],
+    // Kaynak: ANALİZ DOSYASI/FAİLLER.xlsx — sheet adları ve "Açıklama" sütunundan,
+    // içeriğe sadık kalınarak alınmıştır. Alıntıların tamamı public/data/fail-alintilar.json'da.
+    quotesSource: "/data/fail-alintilar.json",
+    groups: [
+      {
+        category: "Ataerkil Aile ve Erkek Egemenliği",
+        definition: "Kadına yönelik şiddetin temel yapısal kaynağı; erkek otoritesini meşrulaştıran aile içi düzen.",
+      },
+      {
+        category: "Devlet ve Hukuk Mekanizması",
+        definition:
+          "Şiddeti önlemekte yetersiz kalan, bazı durumlarda erkek otoritesini koruyan ya da meşrulaştıran resmi mekanizma.",
+      },
+      {
+        category: "Kadınlar",
+        definition: "Kadınların birbirlerine karşı gerçekleştirdiği şiddet türleri",
+      },
+      {
+        category: "Dini ve Ahlaki Söylemler",
+        definition:
+          "Kadının konumunu belirleyen, itaati ve erkeğe bağlılığı teşvik eden veya sorgulayan dini/ahlaki normlar.",
+      },
+      {
+        category: "Basın ve Toplumsal Söylem",
+        definition:
+          "Kadına yönelik şiddeti nasıl temsil ettiğiyle (meşrulaştırma, mazur gösterme ya da eleştirme biçimleriyle) şiddetin algısını şekillendiren alan.",
+      },
+    ],
   },
   {
     key: "alan",
     title: "Alan Temelli Tipoloji",
     subtitle: "Şiddet nerede vuku buluyor?",
-    items: ["Özel Alan (ev, aile)", "Kamusal Alan (sokak, okul, gazete)", "Metinsel Alan (yayın dili ve tonu)"],
+    // Kaynak: ANALİZ DOSYASI/GERÇEKLEŞEN ALANLAR.xlsx
+    quotesSource: "/data/alan-alintilar.json",
+    groups: [
+      {
+        category: "Özel alanlar",
+        definition: "Şiddetin ev, aile veya özel ilişkiler içinde gerçekleştiği yerler",
+      },
+      {
+        category: "Kamusal alanlar",
+        definition:
+          "Şiddetin toplumun görebileceği veya kamuya yansıyan yerlerde gerçekleşmesi; toplumsal kurum ve cemiyetlerde yaşanan durumlar",
+      },
+      {
+        category: "Metinsel",
+        definition: "ahlaki söylem sansasyonel anlatım nötr haber dili kadın odaklı yorum",
+      },
+    ],
   },
   {
     key: "magdur",
     title: "Mağdura Göre Tipoloji",
     subtitle: "Mağdur şiddeti nasıl algılıyor?",
-    items: ["İçselleştirilmiş", "Açıkça Reddedilen", "Sembolleştirilmiş"],
+    // Kaynak: ANALİZ DOSYASI/MAĞDURUN ALGISI_.xlsx
+    quotesSource: "/data/magdur-alintilar.json",
+    groups: [
+      {
+        category: "İçselleştirilmiş",
+        definition: "eğitim ve iffet eşitlenmiş",
+      },
+      {
+        category: "Sembolleştirilmiş",
+        definition: "",
+      },
+      {
+        category: "Kadınların Tepkisi ve Direnişi",
+        definition:
+          "Şiddete karşı çıkan, sesini duyurmaya çalışan, mektup yazarak veya dava açarak ataerkil düzeni sorgulayan kadın öznesi.",
+      },
+    ],
   },
 ];
 
@@ -171,23 +230,64 @@ export const workPackages = [
   },
 ];
 
-export const team = {
-  pi: { name: "Prof. Dr. M. Fatih KANTER", role: "Proje Yürütücüsü" },
+type TeamMember = { name: string; profileUrl?: string };
+
+// profileUrl: YÖKSİS Akademik profil bağlantısı (her biri açılıp sayfadaki isimle
+// doğrulanarak eşleştirilmiştir). M. Mücahid DALKILIÇ için bağlantı henüz sağlanmadı.
+export const team: {
+  pi: TeamMember & { role: string };
+  researchers: TeamMember[];
+  advisors: string[];
+  externalConsultant: string;
+  externalReviewers: string;
+  scholars: TeamMember[];
+  scholarOutput: string;
+} = {
+  pi: {
+    name: "Prof. Dr. M. Fatih KANTER",
+    role: "Proje Yürütücüsü",
+    profileUrl:
+      "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=NPyYQsydu7pn_jChegdWIA&authorId=4410C0CA8A3CC7EB",
+  },
   researchers: [
-    "Prof. Dr. Beyhan KANTER",
-    "Prof. Dr. M. Ruhat YAŞAR",
-    "Doç. Dr. Nilüfer AKA ERDEM",
-    "Doç. Dr. Yavuz Sinan ULU",
-    "Dr. Öğr. Üyesi Erdinç GÜLCÜ",
-    "Dr. Öğr. Üyesi Metin Gani TAPAN",
-    "Dr. Öğr. Üyesi M. Mücahid DALKILIÇ",
+    {
+      name: "Prof. Dr. Beyhan KANTER",
+      profileUrl:
+        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=88C57957890CF3C6",
+    },
+    {
+      name: "Prof. Dr. M. Ruhat YAŞAR",
+      profileUrl:
+        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=FE72B8B9C44AF5CF",
+    },
+    {
+      name: "Doç. Dr. Nilüfer AKA ERDEM",
+      profileUrl:
+        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=E54C1A7192288345",
+    },
+    {
+      name: "Doç. Dr. Yavuz Sinan ULU",
+      profileUrl:
+        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=C9CCB01F5087D6F2",
+    },
+    {
+      name: "Dr. Öğr. Üyesi Erdinç GÜLCÜ",
+      profileUrl:
+        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=5030931263171C71",
+    },
+    {
+      name: "Doç. Dr. Metin Gani TAPAN",
+      profileUrl:
+        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=E6BC6B06AF22D863",
+    },
+    { name: "Dr. Öğr. Üyesi M. Mücahid DALKILIÇ" },
   ],
   advisors: ["Edebiyatçı", "Psikolog", "Sosyolog", "Tarihçi"],
   externalConsultant:
     "tarih alanında uzman, özellikle Osmanlı dönemi dergileri üzerine çalışan bir danışman",
   externalReviewers:
     "sosyoloji alanında doktora yapmış ve dezavantajlı gruplarla saha deneyimi bulunan dış destek sağlayıcı akademisyenler",
-  scholars: 3,
+  scholars: [{ name: "Kader BÜLBÜL" }, { name: "Ayşe Nur ŞAHİN" }, { name: "Melek Şevval TAPAN" }],
   scholarOutput:
     "Bursiyerlerin her biri proje konusu üzerine birer bildiri/makale hazırlayacak.",
 };
@@ -212,6 +312,155 @@ export const womenPeriodicals = [
 
 export const generalPeriodicals = ["Ati", "İkdam", "İleri", "Sebilürreşat", "Tercüman-ı Hakikat"];
 
+// Kaynak: Toska, Çakır, Gençtürk, Yılmaz, Kurç, Art, Demirdirek (1992).
+// İstanbul Kütüphanelerindeki Eski Harfli Türkçe Kadın Dergileri Bibliyografyası
+// (Metis Yayınları / Kadın Eserleri Kütüphanesi ve Bilgi Merkezi Vakfı).
+// Tanım cümleleri derginin kendi künyesinden alınıp modern Türkçeye aktarılmıştır;
+// yıl/sayı bilgileri aynı kaynaktaki künye kayıtlarına dayanır.
+// Projenin dijital arşivinde (bkz. Dijital Arşiv bölümü) bu dergiden kaç metin
+// kodlandığı — arsiv-verileri.json'dan hesaplanmıştır.
+export const chronologyArchiveCounts: Record<string, number> = {
+  "Terakki-i Muhadderat": 66,
+  Aile: 20,
+  İnsaniyet: 5,
+  Mürüvvet: 100,
+  "Hanımlara Mahsus Gazete": 33,
+  Mehasin: 418,
+  Demet: 65,
+  "Kadınlar Dünyası": 466,
+  Siyanet: 53,
+  "Hanımlar Âlemi": 5,
+  "Bilgi Yurdu": 22,
+  "Türk Kadını": 8,
+  "Genç Kadın": 97,
+};
+
+export const chronology = [
+  {
+    year: 1869,
+    endYear: null as number | null,
+    name: "Terakki-i Muhadderat",
+    description:
+      "Terakki gazetesinin kadınlara yönelik eki olarak yayımlanan, bilinen ilk Osmanlı kadın dergisi.",
+    issueCount: null as number | null,
+    frequency: "",
+    editor: "",
+  },
+  {
+    year: 1880,
+    endYear: null as number | null,
+    name: "Aile",
+    description:
+      "Aileye, yani kadınlara, çocuklara ve ev işlerine dair çeşitli konuları içeren mecmua.",
+    issueCount: 3,
+    frequency: "Haftalık",
+    editor: "Sahibi: Mihran · Muharriri: Sami",
+  },
+  {
+    year: 1882,
+    endYear: 1883,
+    name: "İnsaniyet",
+    description:
+      "Kadınlara dair olarak senede on iki nüsha çıkarılması planlanan özel risale; ancak yalnızca 2 sayı yayımlanabilmiştir.",
+    issueCount: 2,
+    frequency: "Planlanan: yılda 12 sayı",
+    editor: "",
+  },
+  {
+    year: 1887,
+    endYear: null as number | null,
+    name: "Mürüvvet",
+    description: "Haftada bir kere neşrolunan Mürüvvet Gazetesi'nin hanımlara mahsus nüshası.",
+    issueCount: 9,
+    frequency: "Haftalık",
+    editor: "Müdürü: Mehmet Ziyaettin",
+  },
+  {
+    year: 1895,
+    endYear: 1908,
+    name: "Hanımlara Mahsus Gazete",
+    description:
+      "\"Gazetemizi neşretmekten asıl maksadımız, ülke ve devletin menfaatine ciddi biçimde hizmet etmektir.\" Dönemin en uzun soluklu ve en çok sayıya ulaşan kadın dergisi.",
+    issueCount: 612,
+    frequency: "Önce haftada iki kez, sonra haftalık",
+    editor: "",
+  },
+  {
+    year: 1908,
+    endYear: 1909,
+    name: "Mehasin",
+    description: "Her Rumi ayın 25. günü çıkan, hanımlara mahsus resimli gazete.",
+    issueCount: 12,
+    frequency: "Aylık",
+    editor: "Sahib-i imtiyaz: Asaf Muammer · Müdür ve sermuharrir: Mehmet Rauf",
+  },
+  {
+    year: 1908,
+    endYear: null as number | null,
+    name: "Demet",
+    description: "Edebi, ilmi, siyasi, hanımlara mahsus haftalık resimli mecmua.",
+    issueCount: 7,
+    frequency: "Haftalık",
+    editor: "",
+  },
+  {
+    year: 1913,
+    endYear: 1921,
+    name: "Kadınlar Dünyası",
+    description:
+      "\"Kadınlığın hukukunu ve menfaatini savunan resimli gazete; sayfalarımız ırk ve mezhep ayrımı gözetmeksizin bütün Osmanlı kadınlarına açıktır.\" Döneminin en etkili kadın hakları savunucusu yayınlarından.",
+    issueCount: 208,
+    frequency: "Önce günlük, sonra haftalık",
+    editor: "",
+  },
+  {
+    year: 1914,
+    endYear: null as number | null,
+    name: "Siyanet",
+    description: "Toplumsal, edebi, ilmi, iktisadi kadın ve aile gazetesi.",
+    issueCount: null as number | null,
+    frequency: "",
+    editor: "",
+  },
+  {
+    year: 1914,
+    endYear: 1918,
+    name: "Hanımlar Âlemi",
+    description: "Perşembe günleri çıkan; edebi, toplumsal, resimli hanım gazetesi.",
+    issueCount: 32,
+    frequency: "Haftalık",
+    editor: "",
+  },
+  {
+    year: 1917,
+    endYear: 1918,
+    name: "Bilgi Yurdu",
+    description:
+      "Hanımlar Bilgi Yurdu Müessesesi'ne bağlı aylık risale. \"Ders Kısmı\" adlı bir eki bulunuyordu; 13. sayıdan sonra \"Bilgi Yurdu Mecmuası\" adını aldı.",
+    issueCount: 17,
+    frequency: "Aylık",
+    editor: "Müdür ve Sermuharrir: Ahmet Edip, sonra Macit Şevket",
+  },
+  {
+    year: 1918,
+    endYear: 1919,
+    name: "Türk Kadını",
+    description: "Kadınlar için çalışır, on beş günde bir çıkar.",
+    issueCount: 21,
+    frequency: "On beş günlük",
+    editor: "",
+  },
+  {
+    year: 1918,
+    endYear: null as number | null,
+    name: "Genç Kadın",
+    description: "On beş günlük, resimli mecmua.",
+    issueCount: null as number | null,
+    frequency: "On beş günlük",
+    editor: "İmtiyaz Sahibi: Seyyit Tahir · Müdiresi: Hatice Refik",
+  },
+];
+
 export const bibliographyNote =
   "Eski Harfli Türkçe Kadın Dergileri Bibliyografyası (Toska ve ark., 1992)";
 
@@ -232,11 +481,44 @@ export const additionalTheorists = [
   "Robert Stoller (1964, 1968)",
 ];
 
-export const outputs = [
-  { value: "2", label: "Uluslararası Makale / Bildiri" },
-  { value: "2", label: "Yüksek Lisans Tezi" },
-  { value: "1", label: "Kapsamlı Kitap" },
-  { value: "1", label: "Dijital Arşiv / Veri Tabanı" },
+export const outputs = [{ value: "1", label: "Dijital Arşiv / Veri Tabanı" }];
+
+// Proje kapsamında yayımlanması planlanan bilimsel çıktılar. Şu an için sayısı ve
+// niteliği başvuru formunda belirtilen "planlanan" çıktılardır; her yayın
+// tamamlandığında `items` dizisine {title, authors, venue, year, url} olarak
+// eklenerek link üzerinden erişilebilir hâle getirilir.
+type PublicationItem = {
+  title: string;
+  authors?: string;
+  venue?: string;
+  year?: string | number;
+  url: string;
+};
+
+export const publications: {
+  category: string;
+  plannedCount: number;
+  note: string;
+  items: PublicationItem[];
+}[] = [
+  {
+    category: "Uluslararası Makale / Bildiri",
+    plannedCount: 2,
+    note: "Proje bulgularına dayalı iki uluslararası makale/bildirinin hakemli dergilerde yayımlanması ve sempozyumlarda sunulması planlanmaktadır.",
+    items: [],
+  },
+  {
+    category: "Yüksek Lisans Tezi",
+    plannedCount: 2,
+    note: "İki araştırmacının yüksek lisans tezlerini proje verileriyle ilişkilendirerek tamamlaması planlanmaktadır.",
+    items: [],
+  },
+  {
+    category: "Kapsamlı Kitap",
+    plannedCount: 1,
+    note: "Latin alfabesine aktarılan metinlerin bir araya getirilerek kitap hâline getirilmesi planlanmaktadır.",
+    items: [],
+  },
 ];
 
 export const beneficiaries = [

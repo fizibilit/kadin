@@ -112,9 +112,11 @@ export default function TypologyCard({
                           <span className="block text-sm font-semibold text-parchment group-hover:text-white">
                             {g.category}
                           </span>
-                          <span className="mt-0.5 block text-xs leading-relaxed text-parchment-dark/70 group-hover:text-white/90">
-                            {g.definition}
-                          </span>
+                          {g.definition && (
+                            <span className="mt-0.5 block text-xs leading-relaxed text-parchment-dark/70 group-hover:text-white/90">
+                              {g.definition}
+                            </span>
+                          )}
                         </span>
                         <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wide text-gold-light group-hover:text-white">
                           İncele →
@@ -156,7 +158,9 @@ export default function TypologyCard({
                   <h3 className="mt-1 font-display text-2xl font-semibold text-maroon-dark">
                     {activeGroup.category}
                   </h3>
-                  <p className="mt-1 text-sm text-ink-soft">{activeGroup.definition}</p>
+                  {activeGroup.definition && (
+                    <p className="mt-1 text-sm text-ink-soft">{activeGroup.definition}</p>
+                  )}
                 </div>
                 <button
                   onClick={() => setActiveGroup(null)}

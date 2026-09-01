@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "tubitak-3005-static-out",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "out", "-p", "4300"],
+      "port": 4300
     }
   ]
 }

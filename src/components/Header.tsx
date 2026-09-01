@@ -11,6 +11,10 @@ const links = [
   { href: "#is-plani", label: "İş Planı" },
   { href: "#ekip", label: "Ekip" },
   { href: "#kaynaklar", label: "Kaynaklar" },
+  { href: "#kronoloji", label: "Kronoloji" },
+  { href: "#kavram-haritasi", label: "Kavram Haritası" },
+  { href: "#arsiv", label: "Arşiv" },
+  { href: "#ciktilar", label: "Çıktılar" },
   { href: "#etki", label: "Etki" },
 ];
 

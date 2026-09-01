@@ -1,3 +1,6 @@
+import Chronology from "@/components/Chronology";
+import ConceptMap from "@/components/ConceptMap";
+import DigitalArchive from "@/components/DigitalArchive";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -6,6 +9,7 @@ import Innovation from "@/components/Innovation";
 import Method from "@/components/Method";
 import NationalGains from "@/components/NationalGains";
 import Periodicals from "@/components/Periodicals";
+import ProjectOutputs from "@/components/ProjectOutputs";
 import Summary from "@/components/Summary";
 import Team from "@/components/Team";
 import Timeline from "@/components/Timeline";
@@ -25,6 +29,10 @@ export default function Home() {
         <Timeline />
         <Team />
         <Periodicals />
+        <Chronology />
+        <ConceptMap />
+        <DigitalArchive />
+        <ProjectOutputs />
         <Impact />
       </main>
       <Footer />

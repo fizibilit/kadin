@@ -42,3 +42,7 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# orijinal kaynak arşivi (kod deposunun parçası değil, sadece burada saklanıyor)
+/TÜBİTAK 3005/
+/TÜBİTAK 3005-*.zip
