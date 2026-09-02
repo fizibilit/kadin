@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 type Quote = { text: string; source: string };
-type Group = { category: string; definition: string };
+type Group = { category: string; definition: string; terms?: string[] };
 type TypologyEntry = {
   key: string;
   title: string;
@@ -172,6 +172,24 @@ export default function TypologyCard({
                   </svg>
                 </button>
               </div>
+
+              {activeGroup.terms && activeGroup.terms.length > 0 && (
+                <div className="mt-4 rounded-xl border border-gold/40 bg-parchment-dark/20 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-maroon">
+                    Fişlenen Alt İfadeler
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {activeGroup.terms.map((term) => (
+                      <span
+                        key={term}
+                        className="rounded-full border border-gold-light/50 bg-parchment px-2.5 py-1 text-xs text-ink-soft"
+                      >
+                        {term}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <p className="mt-5 text-xs uppercase tracking-wide text-ink-soft/60">
                 ANALİZ DOSYASI/EYLEM TÜRLERİNE GÖRE.xlsx — {activeGroup.category} sekmesindeki

@@ -60,26 +60,50 @@ export const typology = [
     key: "eylem",
     title: "Eylem Temelli Tipoloji",
     subtitle: "Şiddet nasıl gerçekleşiyor?",
-    // Kaynak: ANALİZ DOSYASI/EYLEM TÜRLERİNE GÖRE.xlsx — her sheet'in "Açıklama" sütunundan,
-    // içeriğe sadık kalınarak alınmıştır. Alıntıların tamamı (708 kayıt) boyut nedeniyle
-    // burada değil, /public/data/eylem-alintilar.json içinde tutulur ve modal açıldığında
-    // ilgili kategoriye göre çekilir (bkz. TypologyCard.tsx).
+    // Kaynak: ANALİZ DOSYASI/EYLEM TÜRLERİNE GÖRE.xlsx — her sheet'in "Açıklama" ve
+    // "Aranacak İfadeler" sütunlarından, içeriğe sadık kalınarak alınmıştır. Alıntıların
+    // tamamı (708 kayıt) boyut nedeniyle burada değil, /public/data/eylem-alintilar.json
+    // içinde tutulur ve modal açıldığında ilgili kategoriye göre çekilir (bkz. TypologyCard.tsx).
     quotesSource: "/data/eylem-alintilar.json",
     groups: [
-      { category: "Fiziksel", definition: "Kadının bedenine yönelik saldırılar" },
+      {
+        category: "Fiziksel",
+        definition: "Kadının bedenine yönelik saldırılar",
+        terms: ["Dövme", "İtme", "Tokat", "Fiziksel zor", "Kapatma", "Aç bırakma"],
+      },
       {
         category: "Duygusal",
         definition: "Kadının duygularını, özgüvenini hedef alan şiddet",
+        terms: [
+          "Aşağılama",
+          "Küçümseme",
+          "Sevgisizlik",
+          "İlgisizlik",
+          "Kıskançlık",
+          "Roman okuma",
+          "Mesire",
+          "Özgürlük",
+        ],
       },
       {
         category: "Ekonomik",
         definition: "Kadının parasal veya maddi kaynaklarının kontrolü",
+        terms: ["Para vermeme", "Çalışmasına izin vermeme", "Mirasa el koyma"],
       },
-      { category: "Cinsel", definition: "Kadının cinselliği üzerinde baskı veya zorlama" },
-      { category: "Yazılı–Sözlü", definition: "Söylem ve dil üzerinden şiddet" },
+      {
+        category: "Cinsel",
+        definition: "Kadının cinselliği üzerinde baskı veya zorlama",
+        terms: ["Cinsel zorlama", "Evlilikte rıza dışı ilişki", "İffet dayatması"],
+      },
+      {
+        category: "Yazılı–Sözlü",
+        definition: "Söylem ve dil üzerinden şiddet",
+        terms: ["Hakaret", "Tehdit", "Aşağılayıcı hitap", "Sessizlik dayatması"],
+      },
       {
         category: "Sembolik",
         definition: "Kültürel, dini veya toplumsal sembollerle baskı",
+        terms: ["“İffetli kadın” normu", "Mahalle baskısı", "“Aile onuru” vurgusu"],
       },
     ],
   },
@@ -480,18 +504,49 @@ export const bibliographyNote =
 // Bourdieu ve Foucault'nun kavramları ("sembolik şiddet", "itaatkâr beden") başvuru
 // formunda açıkça adlandırılıyor. Butler, De Beauvoir, Oakley ve Stoller ise formda
 // yalnızca toplu bir kuramsal atıf olarak (Butler, 1990, 2014; De Beauvoir, 1993;
-// Oakley, 1972; Stoller, 1964, 1968) geçiyor; bu isimlere özel bir kavram etiketi
-// formda verilmediği için burada da eklenmiyor.
+// Oakley, 1972; Stoller, 1964, 1968) geçiyor. Biyografi/yaşam yılları ve ana eser
+// bilgileri, okurun bağlamı hızlıca kavraması için eklenmiş genel bilgilerdir —
+// başvuru formunun parçası değildir.
 export const theoreticalFrame = [
-  { name: "Pierre Bourdieu", concept: "Sembolik Şiddet" },
-  { name: "Michel Foucault", concept: "İtaatkâr Beden" },
+  {
+    name: "Pierre Bourdieu",
+    years: "1930–2002",
+    concept: "Sembolik Şiddet",
+    bio: "Fransız sosyolog. “Sembolik şiddet” ve “habitus” kavramlarının mimarı; Eril Tahakküm (1998) adlı eserinde toplumsal cinsiyet ilişkilerini iktidar ve tahakküm ekseninde inceledi.",
+  },
+  {
+    name: "Michel Foucault",
+    years: "1926–1984",
+    concept: "İtaatkâr Beden",
+    bio: "Fransız filozof ve tarihçi. İktidar-bilgi ilişkilerini ve bedenin disiplin altına alınma süreçlerini “itaatkâr beden” kavramıyla Hapishanenin Doğuşu (1975) eserinde geliştirdi.",
+  },
 ];
 
 export const additionalTheorists = [
-  "Judith Butler (1990, 2014)",
-  "Simone de Beauvoir (1993)",
-  "Ann Oakley (1972)",
-  "Robert Stoller (1964, 1968)",
+  {
+    name: "Judith Butler",
+    years: "1956–",
+    formCitation: "1990, 2014",
+    bio: "Amerikalı felsefeci. Toplumsal Cinsiyet Belası (1990) ile toplumsal cinsiyetin performatif biçimde inşa edildiği tezini öne sürerek çağdaş toplumsal cinsiyet kuramına yön verdi.",
+  },
+  {
+    name: "Simone de Beauvoir",
+    years: "1908–1986",
+    formCitation: "1993",
+    bio: "Fransız filozof ve yazar. İkinci Cins (1949) ile “kadın doğulmaz, kadın olunur” tezini ortaya koyarak modern feminist felsefenin kurucu isimlerinden oldu.",
+  },
+  {
+    name: "Ann Oakley",
+    years: "1944–",
+    formCitation: "1972",
+    bio: "İngiliz sosyolog. Toplumsal cinsiyet (gender) ile biyolojik cinsiyet (sex) arasındaki ayrımı sistematikleştiren erken dönem feminist sosyologlardan.",
+  },
+  {
+    name: "Robert Stoller",
+    years: "1924–1991",
+    formCitation: "1964, 1968",
+    bio: "Amerikalı psikiyatrist. “Toplumsal cinsiyet kimliği” (gender identity) kavramını klinik psikiyatri literatürüne kazandıran araştırmacılardan.",
+  },
 ];
 
 export const outputs = [{ value: "1", label: "Dijital Arşiv / Veri Tabanı" }];

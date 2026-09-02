@@ -41,11 +41,15 @@ export default function Innovation() {
             yapılar bağlamında yeniden tanımlayan çerçevesi, Osmanlı toplumunun kültürel
             dinamikleriyle ilişkilendiriliyor.
           </p>
-          <div className="mt-6 grid grid-cols-2 gap-4">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {theoreticalFrame.map((t) => (
               <div key={t.name} className="rounded-lg border border-parchment/15 p-4">
-                <p className="font-display text-sm font-semibold text-gold-light">{t.name}</p>
-                <p className="mt-1 text-xs text-parchment-dark/70">{t.concept}</p>
+                <div className="flex items-baseline justify-between gap-2">
+                  <p className="font-display text-sm font-semibold text-gold-light">{t.name}</p>
+                  <span className="shrink-0 text-[11px] text-parchment-dark/60">{t.years}</span>
+                </div>
+                <p className="mt-0.5 text-xs font-semibold text-gold-light/80">{t.concept}</p>
+                <p className="mt-2 text-xs leading-relaxed text-parchment-dark/75">{t.bio}</p>
               </div>
             ))}
           </div>
@@ -53,14 +57,18 @@ export default function Innovation() {
           <p className="mt-6 text-xs uppercase tracking-wide text-gold-light/70">
             Ayrıca temel alınan kuramcılar
           </p>
-          <div className="mt-2.5 flex flex-wrap gap-2">
-            {additionalTheorists.map((name) => (
-              <span
-                key={name}
-                className="rounded-full border border-parchment/15 px-3 py-1 text-xs text-parchment-dark/80"
-              >
-                {name}
-              </span>
+          <div className="mt-3 grid gap-4 sm:grid-cols-2">
+            {additionalTheorists.map((t) => (
+              <div key={t.name} className="rounded-lg border border-parchment/15 p-4">
+                <div className="flex items-baseline justify-between gap-2">
+                  <p className="font-display text-sm font-semibold text-gold-light">{t.name}</p>
+                  <span className="shrink-0 text-[11px] text-parchment-dark/60">{t.years}</span>
+                </div>
+                <p className="mt-2 text-xs leading-relaxed text-parchment-dark/75">{t.bio}</p>
+                <p className="mt-2 text-[11px] text-parchment-dark/50">
+                  Başvuru formunda atıf: {t.formCitation}
+                </p>
+              </div>
             ))}
           </div>
         </div>

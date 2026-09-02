@@ -4,8 +4,19 @@ import SectionHeading from "./SectionHeading";
 
 export default function Periodicals() {
   return (
-    <section id="kaynaklar" className="bg-maroon-dark py-20 sm:py-28 text-parchment">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+    <section id="kaynaklar" className="relative overflow-hidden bg-maroon-dark py-20 sm:py-28 text-parchment">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-20 bottom-0 h-[440px] w-[440px] opacity-[0.08] mix-blend-luminosity blur-[2px]"
+        style={{
+          backgroundImage: "url(/images/dergi-kapaklari/hanimlara-mahsus-gazete.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+          maskImage: "radial-gradient(circle, black 40%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(circle, black 40%, transparent 75%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
             light

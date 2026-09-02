@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import SiteSearch from "./SiteSearch";
 
 const links = [
   { href: "#ozet", label: "Özet" },
@@ -56,25 +57,43 @@ export default function Header() {
           ))}
         </nav>
 
-        <a
-          href="#iletisim"
-          className="hidden lg:inline-flex items-center rounded-full bg-maroon px-4 py-2 text-xs font-semibold uppercase tracking-wider text-parchment hover:bg-maroon-dark transition-colors"
-        >
-          İletişim
-        </a>
+        <div className="hidden lg:flex items-center gap-3">
+          <SiteSearch />
+          <a
+            href="/en"
+            className="rounded-full border border-ink/15 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-ink-soft hover:bg-ink/5 transition-colors"
+          >
+            EN
+          </a>
+          <a
+            href="#iletisim"
+            className="inline-flex items-center rounded-full bg-maroon px-4 py-2 text-xs font-semibold uppercase tracking-wider text-parchment hover:bg-maroon-dark transition-colors"
+          >
+            İletişim
+          </a>
+        </div>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="lg:hidden flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink"
-          aria-label="Menü"
-        >
-          <span className="sr-only">Menü</span>
-          <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
-            <path d="M0 1H18" stroke="currentColor" strokeWidth="1.5" />
-            <path d="M0 7H18" stroke="currentColor" strokeWidth="1.5" />
-            <path d="M0 13H18" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <SiteSearch />
+          <a
+            href="/en"
+            className="flex h-9 items-center justify-center rounded-full border border-ink/15 px-2.5 text-xs font-semibold text-ink-soft"
+          >
+            EN
+          </a>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 text-ink"
+            aria-label="Menü"
+          >
+            <span className="sr-only">Menü</span>
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+              <path d="M0 1H18" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M0 7H18" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M0 13H18" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {open && (

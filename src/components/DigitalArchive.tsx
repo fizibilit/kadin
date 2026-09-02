@@ -28,6 +28,40 @@ const magdurOptions = optionsFor("magdur");
 
 const PAGE_SIZE = 24;
 
+function toCsv(records: ArchiveRecord[]) {
+  const headers = ["id", "metin", "kaynak", "dergi", "yil", "eylem", "fail", "alan", "magdur"];
+  const escape = (v: string) => `"${v.replace(/"/g, '""')}"`;
+  const rows = records.map((r) =>
+    [
+      String(r.id),
+      r.text,
+      r.source,
+      r.journal,
+      r.year,
+      r.eylem.join("; "),
+      r.fail.join("; "),
+      r.alan.join("; "),
+      r.magdur.join("; "),
+    ]
+      .map(escape)
+      .join(",")
+  );
+  return [headers.join(","), ...rows].join("\r\n");
+}
+
+function downloadCsv(records: ArchiveRecord[], filename: string) {
+  const csv = "﻿" + toCsv(records); // BOM: Excel'de Türkçe karakterlerin doğru görünmesi için
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 function Select({
   label,
   value,
@@ -157,9 +191,20 @@ export default function DigitalArchive() {
     <section
       id="arsiv"
       ref={sectionRef}
-      className="bg-maroon-dark py-20 sm:py-28 text-parchment"
+      className="relative overflow-hidden bg-maroon-dark py-20 sm:py-28 text-parchment"
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-24 bottom-0 h-[480px] w-[480px] opacity-[0.08] mix-blend-luminosity blur-[2px]"
+        style={{
+          backgroundImage: "url(/images/dergi-kapaklari/siyanet.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+          maskImage: "radial-gradient(circle, black 40%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(circle, black 40%, transparent 75%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
             light
@@ -208,16 +253,42 @@ export default function DigitalArchive() {
           </div>
         </Reveal>
 
-        <div className="mt-6 text-sm text-parchment-dark/70">
-          {!data && !loading && !error && "Sonuçları görmek için bu bölüme kaydırın."}
-          {loading && "Arşiv yükleniyor…"}
-          {error && "Arşiv yüklenemedi, lütfen sayfayı yenileyin."}
-          {data && (
-            <>
-              <span className="font-semibold text-gold-light">{filtered.length}</span> /{" "}
-              {data.length} metin
-              {hasActiveFilters ? " (filtre uygulandı)" : ""}
-            </>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-sm text-parchment-dark/70">
+          <span>
+            {!data && !loading && !error && "Sonuçları görmek için bu bölüme kaydırın."}
+            {loading && "Arşiv yükleniyor…"}
+            {error && "Arşiv yüklenemedi, lütfen sayfayı yenileyin."}
+            {data && (
+              <>
+                <span className="font-semibold text-gold-light">{filtered.length}</span> /{" "}
+                {data.length} metin
+                {hasActiveFilters ? " (filtre uygulandı)" : ""}
+              </>
+            )}
+          </span>
+
+          {data && filtered.length > 0 && (
+            <button
+              type="button"
+              onClick={() =>
+                downloadCsv(
+                  filtered,
+                  hasActiveFilters ? "arsiv-filtrelenmis.csv" : "arsiv-tum-metinler.csv"
+                )
+              }
+              className="inline-flex items-center gap-1.5 rounded-full border border-gold-light/40 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-gold-light transition-colors hover:bg-parchment/[0.08]"
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path
+                  d="M6 1v7m0 0L3.5 5.5M6 8l2.5-2.5M2 10h8"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {hasActiveFilters ? "Filtrelenmiş sonuçları indir" : "Tüm arşivi indir"} (CSV)
+            </button>
           )}
         </div>
 
