@@ -459,7 +459,7 @@ export const chronology = [
     year: 1914,
     endYear: 1918,
     name: "Hanımlar Âlemi",
-    coverImage: null as string | null,
+    coverImage: "/images/dergi-kapaklari/hanimlar-alemi.jpg" as string | null,
     description: "Perşembe günleri çıkan; edebi, toplumsal, resimli hanım gazetesi.",
     issueCount: 32,
     frequency: "Haftalık",

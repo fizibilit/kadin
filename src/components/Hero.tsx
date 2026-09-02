@@ -22,18 +22,6 @@ export default function Hero() {
           backgroundSize: "26px 26px",
         }}
       />
-      {/* arka planda bulanık, silik Osmanlıca kaligrafi dokusu (Mürüvvet dergisi kapağından) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-24 top-0 h-[520px] w-[520px] opacity-[0.09] mix-blend-luminosity blur-[2px]"
-        style={{
-          backgroundImage: "url(/images/dergi-kapaklari/muruvvet.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "top",
-          maskImage: "radial-gradient(circle, black 40%, transparent 75%)",
-          WebkitMaskImage: "radial-gradient(circle, black 40%, transparent 75%)",
-        }}
-      />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8 pt-20 sm:pt-28 pb-24 sm:pb-32">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">

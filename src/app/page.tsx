@@ -10,6 +10,7 @@ import Method from "@/components/Method";
 import NationalGains from "@/components/NationalGains";
 import Periodicals from "@/components/Periodicals";
 import ProjectOutputs from "@/components/ProjectOutputs";
+import ScrollToTop from "@/components/ScrollToTop";
 import Summary from "@/components/Summary";
 import Team from "@/components/Team";
 import Timeline from "@/components/Timeline";
@@ -36,6 +37,7 @@ export default function Home() {
         <Impact />
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }

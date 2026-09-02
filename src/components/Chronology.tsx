@@ -3,9 +3,12 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { chronology, chronologyArchiveCounts } from "@/data/project";
+import { chronology, chronologyArchiveCounts, project } from "@/data/project";
+import CountUp from "./CountUp";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+
+const totalIssues = chronology.reduce((sum, c) => sum + (c.issueCount ?? 0), 0);
 
 export default function Chronology() {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
@@ -22,77 +25,121 @@ export default function Chronology() {
   }, [lightbox]);
 
   return (
-    <section id="kronoloji" className="mx-auto max-w-5xl px-5 sm:px-8 py-20 sm:py-28">
-      <Reveal>
-        <SectionHeading
-          eyebrow="Kronoloji"
-          title="Kadın basınının yarım asırlık haritası"
-          description="1869'dan 1919'a, kadınlara seslenen süreli yayınların yayın ömrü, sayı sayısı ve içeriği — Toska ve arkadaşlarının (1992) İstanbul Kütüphanelerindeki Eski Harfli Türkçe Kadın Dergileri Bibliyografyası'na dayanır. Kapak görselleri, Kadın Eserleri Kütüphanesi'nin “Osmanlı ve Erken Cumhuriyet Kadın Dergileri: Talepler, Engeller, Mücadele” yeni harfli baskı serisindendir."
-        />
-      </Reveal>
+    <section
+      id="kronoloji"
+      className="relative overflow-hidden bg-maroon-dark py-20 sm:py-28 text-parchment"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 top-0 h-[420px] w-[420px] rounded-full bg-gold/10 blur-[110px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-32 bottom-0 h-[360px] w-[360px] rounded-full bg-maroon-light/20 blur-[110px]"
+      />
 
-      <div className="relative mt-14 ml-3 sm:ml-6">
-        <div
-          aria-hidden
-          className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-gold via-gold-light to-gold"
-        />
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+        <Reveal>
+          <SectionHeading
+            light
+            eyebrow="Kronoloji"
+            title="Kadın basınının yarım asırlık haritası"
+            description="1869'dan 1919'a, kadınlara seslenen süreli yayınların yayın ömrü, sayı sayısı ve içeriği — Toska ve arkadaşlarının (1992) İstanbul Kütüphanelerindeki Eski Harfli Türkçe Kadın Dergileri Bibliyografyası'na dayanır. Kapak görselleri, Kadın Eserleri Kütüphanesi'nin “Osmanlı ve Erken Cumhuriyet Kadın Dergileri: Talepler, Engeller, Mücadele” yeni harfli baskı serisindendir."
+          />
+        </Reveal>
 
-        <div className="space-y-10">
+        <Reveal delay={80}>
+          <dl className="mt-10 grid grid-cols-3 gap-4 border-y border-gold-light/20 py-6 sm:max-w-xl">
+            <div>
+              <dt className="text-xs uppercase tracking-wide text-gold-light/70">Dergi</dt>
+              <dd className="mt-1 font-display text-3xl font-semibold text-gold-light">
+                <CountUp value={chronology.length} />
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-wide text-gold-light/70">Yıl aralığı</dt>
+              <dd className="mt-1 font-display text-3xl font-semibold text-gold-light">
+                {project.years}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-wide text-gold-light/70">Yayımlanan sayı</dt>
+              <dd className="mt-1 font-display text-3xl font-semibold text-gold-light">
+                <CountUp value={totalIssues} suffix="+" />
+              </dd>
+            </div>
+          </dl>
+        </Reveal>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {chronology.map((item, i) => {
             const archiveCount = chronologyArchiveCounts[item.name];
             const yearLabel = item.endYear ? `${item.year}–${item.endYear}` : `${item.year}`;
             return (
-              <Reveal key={item.name} delay={i * 70}>
-                <div className="relative pl-8 sm:pl-10">
-                  <span
-                    aria-hidden
-                    className="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-gold bg-parchment"
-                  />
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                    {item.coverImage && (
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setLightbox({ src: item.coverImage as string, alt: `${item.name} kapağı` })
-                        }
-                        className="group shrink-0 self-start overflow-hidden rounded-lg border border-gold-light/50 shadow-sm transition-shadow hover:shadow-md"
-                      >
-                        <Image
-                          src={item.coverImage}
-                          alt={`${item.name} kapağı`}
-                          width={96}
-                          height={128}
-                          className="h-32 w-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </button>
-                    )}
-
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        <span className="font-display text-lg font-semibold text-gold">
-                          {yearLabel}
+              <Reveal key={item.name} delay={(i % 3) * 90}>
+                <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gold-light/20 bg-parchment/[0.04] transition-all duration-300 hover:-translate-y-1.5 hover:border-gold-light/60 hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.55)]">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      item.coverImage &&
+                      setLightbox({ src: item.coverImage as string, alt: `${item.name} kapağı` })
+                    }
+                    disabled={!item.coverImage}
+                    className="relative aspect-[3/4] w-full overflow-hidden bg-gradient-to-br from-maroon to-maroon-dark disabled:cursor-default"
+                  >
+                    {item.coverImage ? (
+                      <Image
+                        src={item.coverImage}
+                        alt={`${item.name} kapağı`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center">
+                        <span className="font-display text-6xl font-semibold text-gold-light/20">
+                          {item.name.charAt(0)}
                         </span>
-                        <h3 className="font-display text-lg font-semibold text-maroon-dark">
-                          {item.name}
-                        </h3>
                       </div>
-                      <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
-                        {item.description}
-                      </p>
-                      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-soft/70">
-                        {item.issueCount != null && <span>{item.issueCount} sayı</span>}
-                        {item.frequency && <span>{item.frequency}</span>}
-                        {item.editor && <span>{item.editor}</span>}
-                      </div>
-                      {archiveCount ? (
-                        <a
-                          href="#arsiv"
-                          className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-maroon hover:underline"
-                        >
-                          Dijital arşivde {archiveCount} metin kodlanmış →
-                        </a>
-                      ) : null}
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-maroon-dark/95 via-maroon-dark/10 to-transparent" />
+                    <span className="absolute left-3 top-3 rounded-full bg-maroon-dark/80 px-2.5 py-1 text-xs font-semibold text-gold-light backdrop-blur-sm">
+                      {yearLabel}
+                    </span>
+                    {item.coverImage && (
+                      <span className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-maroon-dark/80 text-gold-light opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                        <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                          <path
+                            d="M2 9V2h7M2 2l10 10M12 5v7H5"
+                            stroke="currentColor"
+                            strokeWidth="1.3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    )}
+                  </button>
+
+                  <div className="flex flex-1 flex-col p-4">
+                    <h3 className="font-display text-base font-semibold text-parchment">
+                      {item.name}
+                    </h3>
+                    <p className="mt-1.5 flex-1 text-xs leading-relaxed text-parchment-dark/75">
+                      {item.description}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-parchment-dark/60">
+                      {item.issueCount != null && <span>{item.issueCount} sayı</span>}
+                      {item.frequency && <span>{item.frequency}</span>}
                     </div>
+                    {archiveCount ? (
+                      <a
+                        href="#arsiv"
+                        className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold text-gold-light transition-colors hover:text-parchment"
+                      >
+                        Arşivde {archiveCount} metin →
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               </Reveal>

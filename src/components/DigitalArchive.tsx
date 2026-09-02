@@ -193,17 +193,6 @@ export default function DigitalArchive() {
       ref={sectionRef}
       className="relative overflow-hidden bg-maroon-dark py-20 sm:py-28 text-parchment"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-24 bottom-0 h-[480px] w-[480px] opacity-[0.08] mix-blend-luminosity blur-[2px]"
-        style={{
-          backgroundImage: "url(/images/dergi-kapaklari/siyanet.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "top",
-          maskImage: "radial-gradient(circle, black 40%, transparent 75%)",
-          WebkitMaskImage: "radial-gradient(circle, black 40%, transparent 75%)",
-        }}
-      />
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading

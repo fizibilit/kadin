@@ -12,6 +12,7 @@ import {
   womenPeriodicalsEn,
 } from "@/data/project.en";
 import Reveal from "@/components/Reveal";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Analysis of Violence Against Women in the Ottoman Press (1869–1923) | TÜBİTAK 3005",
@@ -231,6 +232,7 @@ export default function EnglishSummaryPage() {
       <footer className="border-t border-gold-light/25 py-8 text-center text-xs text-ink-soft/60">
         {projectEn.program} · {projectEn.institution} · {projectEn.years}
       </footer>
+      <ScrollToTop />
     </div>
   );
 }
