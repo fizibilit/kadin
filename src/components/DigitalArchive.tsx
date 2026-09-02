@@ -62,6 +62,88 @@ function downloadCsv(records: ArchiveRecord[], filename: string) {
   URL.revokeObjectURL(url);
 }
 
+const BOOKMARK_KEY = "kadin-arsiv-favoriler";
+
+// Bir alıntıyı, sosyal medyada paylaşılabilir görsel bir kart (PNG) olarak indirir.
+function downloadQuoteCard(r: ArchiveRecord) {
+  const W = 1080;
+  const H = 1080;
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, "#4a1420");
+  grad.addColorStop(1, "#6d1f2b");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.strokeStyle = "rgba(217,184,118,0.35)";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(36, 36, W - 72, H - 72);
+
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#d9b876";
+  ctx.font = "600 21px Georgia, serif";
+  ctx.fillText("OSMANLI BASININDA KADINA YÖNELİK ŞİDDET", W / 2, 108);
+
+  ctx.fillStyle = "rgba(217,184,118,0.35)";
+  ctx.font = "italic 110px Georgia, serif";
+  ctx.fillText("“", W / 2, 240);
+
+  ctx.fillStyle = "#f6efe2";
+  ctx.font = "400 36px Georgia, serif";
+  const maxWidth = W - 170;
+  const words = r.text.split(" ");
+  const lines: string[] = [];
+  let line = "";
+  for (const word of words) {
+    const test = line ? `${line} ${word}` : word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  }
+  if (line) lines.push(line);
+  const maxLines = 9;
+  const displayLines =
+    lines.length > maxLines
+      ? [...lines.slice(0, maxLines - 1), lines[maxLines - 1].replace(/\s*\S*$/, "") + "…"]
+      : lines;
+  const lineHeight = 52;
+  const startY = H / 2 - (displayLines.length * lineHeight) / 2;
+  displayLines.forEach((l, i) => ctx.fillText(l, W / 2, startY + i * lineHeight));
+
+  ctx.fillStyle = "#d9b876";
+  ctx.font = "italic 25px Georgia, serif";
+  const sourceLine = [r.journal, r.year].filter(Boolean).join(", ");
+  ctx.fillText(
+    sourceLine || "Osmanlı Basını Arşivi",
+    W / 2,
+    startY + displayLines.length * lineHeight + 60
+  );
+
+  ctx.fillStyle = "rgba(246,239,226,0.5)";
+  ctx.font = "19px Arial, sans-serif";
+  ctx.fillText("kadin-self.vercel.app · Dijital Arşiv", W / 2, H - 66);
+
+  canvas.toBlob((blob) => {
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `alinti-${r.id}.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, "image/png");
+}
+
 function Select({
   label,
   value,
@@ -108,6 +190,34 @@ export default function DigitalArchive() {
   const [alan, setAlan] = useState("");
   const [magdur, setMagdur] = useState("");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  // Favorileri (yalnızca bu tarayıcıya özel) localStorage'dan oku. Bu bölüm
+  // IntersectionObserver ile lazy-load edildiği ve kartlar `data` gelmeden
+  // render edilmediği için (bkz. aşağıda `{data && (...)}`), lazy initializer
+  // sunucu tarafında hiç kullanılmaz — hydration uyuşmazlığı oluşturmaz.
+  const [bookmarks, setBookmarks] = useState<Set<number>>(() => {
+    if (typeof window === "undefined") return new Set();
+    try {
+      const raw = window.localStorage.getItem(BOOKMARK_KEY);
+      return raw ? new Set(JSON.parse(raw)) : new Set();
+    } catch {
+      return new Set();
+    }
+  });
+  const [showBookmarksOnly, setShowBookmarksOnly] = useState(false);
+
+  function toggleBookmark(id: number) {
+    setBookmarks((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      try {
+        window.localStorage.setItem(BOOKMARK_KEY, JSON.stringify(Array.from(next)));
+      } catch {
+        // yok say
+      }
+      return next;
+    });
+  }
 
   // Bölüm görünür olduğunda arşiv verisini (bir kez) yükle
   useEffect(() => {
@@ -163,12 +273,13 @@ export default function DigitalArchive() {
       if (fail && !r.fail.includes(fail)) return false;
       if (alan && !r.alan.includes(alan)) return false;
       if (magdur && !r.magdur.includes(magdur)) return false;
+      if (showBookmarksOnly && !bookmarks.has(r.id)) return false;
       return true;
     });
-  }, [data, search, journal, year, eylem, fail, alan, magdur]);
+  }, [data, search, journal, year, eylem, fail, alan, magdur, showBookmarksOnly, bookmarks]);
 
   // Filtre değişince sayfalamayı sıfırla (render sırasında, ekstra effect'siz).
-  const filterKey = `${search}|${journal}|${year}|${eylem}|${fail}|${alan}|${magdur}`;
+  const filterKey = `${search}|${journal}|${year}|${eylem}|${fail}|${alan}|${magdur}|${showBookmarksOnly}`;
   const [prevFilterKey, setPrevFilterKey] = useState(filterKey);
   if (filterKey !== prevFilterKey) {
     setPrevFilterKey(filterKey);
@@ -243,15 +354,37 @@ export default function DigitalArchive() {
         </Reveal>
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-sm text-parchment-dark/70">
-          <span>
+          <span className="flex flex-wrap items-center gap-3">
             {!data && !loading && !error && "Sonuçları görmek için bu bölüme kaydırın."}
             {loading && "Arşiv yükleniyor…"}
             {error && "Arşiv yüklenemedi, lütfen sayfayı yenileyin."}
             {data && (
               <>
-                <span className="font-semibold text-gold-light">{filtered.length}</span> /{" "}
-                {data.length} metin
-                {hasActiveFilters ? " (filtre uygulandı)" : ""}
+                <span>
+                  <span className="font-semibold text-gold-light">{filtered.length}</span> /{" "}
+                  {data.length} metin
+                  {hasActiveFilters ? " (filtre uygulandı)" : ""}
+                </span>
+                {bookmarks.size > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowBookmarksOnly((v) => !v)}
+                    className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide transition-colors ${
+                      showBookmarksOnly
+                        ? "border-gold bg-gold text-maroon-dark"
+                        : "border-gold-light/40 text-gold-light hover:bg-parchment/[0.08]"
+                    }`}
+                  >
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill={showBookmarksOnly ? "currentColor" : "none"}>
+                      <path
+                        d="M3 1.5h6a.5.5 0 0 1 .5.5v9l-3.5-2-3.5 2V2a.5.5 0 0 1 .5-.5Z"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                      />
+                    </svg>
+                    Favorilerim ({bookmarks.size})
+                  </button>
+                )}
               </>
             )}
           </span>
@@ -284,14 +417,54 @@ export default function DigitalArchive() {
         {data && (
           <>
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {filtered.slice(0, visibleCount).map((r) => (
+              {filtered.slice(0, visibleCount).map((r) => {
+                const isBookmarked = bookmarks.has(r.id);
+                return (
                 <div
                   key={r.id}
-                  className="flex flex-col rounded-xl border border-parchment/10 bg-parchment/[0.05] p-4"
+                  className="group flex flex-col rounded-xl border border-parchment/10 bg-parchment/[0.05] p-4"
                 >
-                  <p className="flex-1 text-sm leading-relaxed text-parchment">
-                    &ldquo;{r.text.length > 220 ? r.text.slice(0, 220) + "…" : r.text}&rdquo;
-                  </p>
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="flex-1 text-sm leading-relaxed text-parchment">
+                      &ldquo;{r.text.length > 220 ? r.text.slice(0, 220) + "…" : r.text}&rdquo;
+                    </p>
+                    <div className="flex shrink-0 gap-1 opacity-60 transition-opacity group-hover:opacity-100">
+                      <button
+                        type="button"
+                        onClick={() => toggleBookmark(r.id)}
+                        aria-label={isBookmarked ? "Favorilerden çıkar" : "Favorilere ekle"}
+                        title={isBookmarked ? "Favorilerden çıkar" : "Favorilere ekle"}
+                        className={`flex h-6 w-6 items-center justify-center rounded-full transition-colors ${
+                          isBookmarked ? "text-gold-light" : "text-parchment-dark/60 hover:text-gold-light"
+                        }`}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill={isBookmarked ? "currentColor" : "none"}>
+                          <path
+                            d="M3 1.5h6a.5.5 0 0 1 .5.5v9l-3.5-2-3.5 2V2a.5.5 0 0 1 .5-.5Z"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => downloadQuoteCard(r)}
+                        aria-label="Alıntı kartı olarak indir"
+                        title="Alıntı kartı olarak indir (paylaşım için)"
+                        className="flex h-6 w-6 items-center justify-center rounded-full text-parchment-dark/60 transition-colors hover:text-gold-light"
+                      >
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path
+                            d="M6 1v6.5m0 0L3.5 5m2.5 2.5L8.5 5M2 9.5h8"
+                            stroke="currentColor"
+                            strokeWidth="1.1"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                   {r.source && (
                     <p className="mt-2 text-xs text-parchment-dark/60">— {r.source}</p>
                   )}
@@ -306,7 +479,8 @@ export default function DigitalArchive() {
                     ))}
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             {filtered.length === 0 && (

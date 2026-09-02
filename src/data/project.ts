@@ -551,6 +551,18 @@ export const additionalTheorists = [
 
 export const outputs = [{ value: "1", label: "Dijital Arşiv / Veri Tabanı" }];
 
+// Proje güncellemeleri günlüğü. Yalnızca gerçekleşmiş, tarihi bilinen olaylar
+// eklenmelidir — burada listelenen tek girdi bu web sitesinin yayına alınmasıdır.
+// Yeni bir aşama tamamlandıkça (örn. bir dergi taramasının bitmesi, bir kodlama
+// turunun tamamlanması) ekibin buraya {date, title, text} olarak eklemesi önerilir.
+export const updates: { date: string; title: string; text: string }[] = [
+  {
+    date: "2026-09",
+    title: "Proje tanıtım sitesi yayına alındı",
+    text: "Dijital arşiv, tipoloji, kronoloji ve kavram haritası bölümleriyle projenin tanıtım web sitesi erişime açıldı.",
+  },
+];
+
 // Proje kapsamında yayımlanması planlanan bilimsel çıktılar. Şu an için sayısı ve
 // niteliği başvuru formunda belirtilen "planlanan" çıktılardır; her yayın
 // tamamlandığında `items` dizisine {title, authors, venue, year, url} olarak
@@ -621,5 +633,32 @@ export const risks = [
   {
     title: "Malzeme Hacminin Öngörüyü Aşması",
     text: "Baskın şiddet türü içeren metinlere öncelik verilerek kapsam yönetilebilir tutulacaktır.",
+  },
+];
+
+export const faqs = [
+  {
+    q: "Bu bir dijital arşiv mi, yoksa akademik bir analiz mi?",
+    a: "İkisi de. Site hem transkribe edilmiş birincil kaynak metinlerinden oluşan filtrelenebilir bir dijital arşiv sunar, hem de bu metinlerin dört katmanlı bir tipoloji ve kuramsal çerçeve (Bourdieu, Foucault ve diğerleri) ile analiz edildiği akademik bulguları içerir.",
+  },
+  {
+    q: "İncelenecek metinler nasıl seçildi?",
+    a: "Amaçlı ölçüt örnekleme yöntemiyle, farklı bölge ve ideolojik eğilimlerden gelen dergi ve gazeteler taranmıştır. Metin tespitinde “nisa, nisvan, nisviyyet, kadın, hatun, hanım, genç kız, kız çocuğu” gibi anahtar kelimeler esas alınmıştır.",
+  },
+  {
+    q: "Dijital Arşiv'deki metinleri nasıl kullanabilirim?",
+    a: "Yayın adı, yıl, şiddet türü, fail, alan ve mağdurun algısına göre filtreleyebilir, metin içinde arama yapabilir ve sonuçları CSV olarak indirebilirsiniz. Akademik kullanımda projeye atıf verilmesi rica olunur (bkz. aşağıdaki “Bu Projeye Atıf Verin” bölümü).",
+  },
+  {
+    q: "Dergi kapak görselleri nereden alınıyor?",
+    a: "Kapak görsellerinin büyük bölümü Kadın Eserleri Kütüphanesi ve Bilgi Merkezi Vakfı'nın yayımladığı “Osmanlı ve Erken Cumhuriyet Kadın Dergileri: Talepler, Engeller, Mücadele” yeni harfli baskı serisinden, kaynak gösterilerek ve yalnızca akademik/tanıtım amaçlı alınmıştır.",
+  },
+  {
+    q: "Proje ne zaman tamamlanacak, sonuçlarına nereden ulaşabilirim?",
+    a: "Proje 18 aylık bir TÜBİTAK 3005 çalışmasıdır; aşamaları İş Planı bölümünde yer alır. Planlanan çıktılar (makale, tez, kitap) tamamlandıkça Proje Çıktıları bölümüne eklenecektir.",
+  },
+  {
+    q: "Eksik bir dergi veya kaynak biliyorum, nasıl katkıda bulunabilirim?",
+    a: "Projeye kaynak önerisi, düzeltme ya da geri bildiriminizi İletişim bölümündeki bilgilerle proje yürütücüsüne ulaştırabilirsiniz.",
   },
 ];

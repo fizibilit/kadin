@@ -14,10 +14,28 @@ import {
 import Reveal from "@/components/Reveal";
 import ScrollToTop from "@/components/ScrollToTop";
 
+const EN_TITLE = "Analysis of Violence Against Women in the Ottoman Press (1869–1923) | TÜBİTAK 3005";
+const EN_DESCRIPTION =
+  "An English-language overview of a TÜBİTAK 3005 project led by Kilis 7 Aralık University, examining representations of violence against women in Ottoman-era periodicals (1869–1923) through a four-layer typology.";
+
 export const metadata: Metadata = {
-  title: "Analysis of Violence Against Women in the Ottoman Press (1869–1923) | TÜBİTAK 3005",
-  description:
-    "An English-language overview of a TÜBİTAK 3005 project led by Kilis 7 Aralık University, examining representations of violence against women in Ottoman-era periodicals (1869–1923) through a four-layer typology.",
+  title: EN_TITLE,
+  description: EN_DESCRIPTION,
+  openGraph: {
+    title: EN_TITLE,
+    description: EN_DESCRIPTION,
+    url: "https://kadin-self.vercel.app/en",
+    siteName: "Analysis of Violence Against Women in the Ottoman Press",
+    locale: "en_US",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: EN_TITLE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: EN_TITLE,
+    description: EN_DESCRIPTION,
+    images: ["/og-image.png"],
+  },
 };
 
 function Section({

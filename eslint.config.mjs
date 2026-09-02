@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Build-time Node data-generation scripts (CommonJS, not part of the app bundle):
+    "scripts/**",
   ]),
 ]);
 

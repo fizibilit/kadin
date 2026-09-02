@@ -51,6 +51,22 @@ export default function Method() {
           ))}
         </div>
       </div>
+
+      <Reveal delay={methodSteps.length * 100}>
+        <div className="mt-14 rounded-2xl border border-gold-light/40 bg-parchment-dark/20 p-6 sm:p-8">
+          <h3 className="font-display text-lg font-semibold text-maroon-dark">
+            Güvenilirlik ve Doğrulama
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+            Kodlama süreci tek bir araştırmacıyla sınırlı değildir: her kodlama turu,
+            proje ekibindeki araştırmacılar ve alan danışmanları (edebiyatçı, psikolog,
+            sosyolog, tarihçi) arasında akran değerlendirmesiyle karşılıklı olarak
+            gözden geçirilir. Anlaşmazlık durumunda ilgili metin, kategori tanımları
+            yeniden gözden geçirilerek ekip içinde tartışılıp netleştirilir. Bu, tek
+            bir yorumcunun öznel değerlendirmesine bağlı kalınmasını önlemeyi amaçlar.
+          </p>
+        </div>
+      </Reveal>
     </section>
   );
 }
