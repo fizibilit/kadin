@@ -20,7 +20,7 @@ export default function Footer() {
               Proje
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
-              <li>{project.program}</li>
+              <li>{project.program} · Proje No: {project.number}</li>
               <li>{project.programFull}</li>
               <li>{project.institution}</li>
             </ul>

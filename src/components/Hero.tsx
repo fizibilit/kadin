@@ -28,7 +28,7 @@ export default function Hero() {
           <div>
             <Reveal className="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
               <span className="rounded-full border border-gold-light/50 px-3 py-1 font-semibold uppercase tracking-[0.2em] text-gold-light">
-                {project.program}
+                {project.program} · {project.number}
               </span>
               <span className="text-parchment-dark/70">{project.programFull}</span>
             </Reveal>

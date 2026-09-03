@@ -2,6 +2,7 @@ export const project = {
   program: "TÜBİTAK 3005",
   programFull:
     "Sosyal ve Beşeri Bilimlerde Yenilikçi Çözümler Araştırma Destek Programı",
+  number: "225K802",
   title: "Osmanlı Basınında Kadına Yönelik Şiddetin Analizi",
   years: "1869–1923",
   institution: "Kilis 7 Aralık Üniversitesi",

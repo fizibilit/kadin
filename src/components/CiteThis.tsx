@@ -9,7 +9,7 @@ function buildCitation() {
   // Başvuru formunda projenin resmî başlangıç/bitiş yılı belirtilmediği için
   // yayın tarihi "t.y." (tarih yok) olarak bırakılır — APA'da bilinmeyen tarih
   // için standart kısaltma budur; uydurma bir yıl yazılmaz.
-  return `${project.pi} (t.y.). ${project.title} (${project.years}) [${project.program} Projesi]. ${project.institution}. ${SITE_URL}`;
+  return `${project.pi} (t.y.). ${project.title} (${project.years}) [${project.program} Projesi, No: ${project.number}]. ${project.institution}. ${SITE_URL}`;
 }
 
 export default function CiteThis() {

@@ -96,7 +96,7 @@ export default function EnglishSummaryPage() {
         <div className="relative mx-auto max-w-4xl px-5 sm:px-8 pt-16 sm:pt-20 pb-16 sm:pb-20">
           <Reveal className="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
             <span className="rounded-full border border-gold-light/50 px-3 py-1 font-semibold uppercase tracking-[0.2em] text-gold-light">
-              {projectEn.program}
+              {projectEn.program} · {projectEn.number}
             </span>
             <span className="text-parchment-dark/70">{projectEn.programFull}</span>
           </Reveal>
@@ -252,7 +252,7 @@ export default function EnglishSummaryPage() {
       </Section>
 
       <footer className="border-t border-gold-light/25 py-8 text-center text-xs text-ink-soft/60">
-        {projectEn.program} · {projectEn.institution} · {projectEn.years}
+        {projectEn.program} (No. {projectEn.number}) · {projectEn.institution} · {projectEn.years}
       </footer>
       <ScrollToTop />
     </div>

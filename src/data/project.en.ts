@@ -7,6 +7,7 @@
 export const projectEn = {
   program: "TÜBİTAK 3005",
   programFull: "Research Support Program for Innovative Solutions in Social Sciences and Humanities",
+  number: "225K802",
   title: "Analysis of Violence Against Women in the Ottoman Press",
   years: "1869–1923",
   institution: "Kilis 7 Aralık University",

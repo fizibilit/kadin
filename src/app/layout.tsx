@@ -42,6 +42,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ResearchProject",
   name: "Osmanlı Basınında Kadına Yönelik Şiddetin Analizi (1869–1923)",
+  identifier: "225K802",
   description: DESCRIPTION,
   url: SITE_URL,
   inLanguage: "tr",

@@ -33,6 +33,12 @@ export default function Summary() {
               </div>
               <div>
                 <dt className="text-ink-soft/70 uppercase tracking-wide text-xs">
+                  Proje Numarası
+                </dt>
+                <dd className="mt-1 font-medium">{project.number}</dd>
+              </div>
+              <div>
+                <dt className="text-ink-soft/70 uppercase tracking-wide text-xs">
                   Yürütücü Kurum
                 </dt>
                 <dd className="mt-1 font-medium">{project.institution}</dd>
