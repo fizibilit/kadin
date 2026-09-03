@@ -261,6 +261,7 @@ type TeamMember = { name: string; profileUrl?: string };
 export const team: {
   pi: TeamMember & { role: string };
   researchers: TeamMember[];
+  projectAdvisors: TeamMember[];
   advisors: string[];
   externalConsultant: string;
   externalReviewers: string;
@@ -280,11 +281,6 @@ export const team: {
         "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=88C57957890CF3C6",
     },
     {
-      name: "Prof. Dr. M. Ruhat YAŞAR",
-      profileUrl:
-        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=FE72B8B9C44AF5CF",
-    },
-    {
       name: "Doç. Dr. Nilüfer AKA ERDEM",
       profileUrl:
         "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=E54C1A7192288345",
@@ -295,16 +291,24 @@ export const team: {
         "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=C9CCB01F5087D6F2",
     },
     {
-      name: "Dr. Öğr. Üyesi Erdinç GÜLCÜ",
-      profileUrl:
-        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=5030931263171C71",
-    },
-    {
       name: "Doç. Dr. Metin Gani TAPAN",
       profileUrl:
         "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=E6BC6B06AF22D863",
     },
     { name: "Dr. Öğr. Üyesi M. Mücahid DALKILIÇ" },
+  ],
+  // İş paketi görev dağılımında "araştırmacı" değil "proje danışmanı" sıfatıyla yer alıyorlar.
+  projectAdvisors: [
+    {
+      name: "Prof. Dr. M. Ruhat YAŞAR",
+      profileUrl:
+        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=FE72B8B9C44AF5CF",
+    },
+    {
+      name: "Dr. Öğr. Üyesi Erdinç GÜLCÜ",
+      profileUrl:
+        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=5030931263171C71",
+    },
   ],
   advisors: ["Edebiyatçı", "Psikolog", "Sosyolog", "Tarihçi"],
   externalConsultant:

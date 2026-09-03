@@ -221,6 +221,10 @@ export default function EnglishSummaryPage() {
           ))}
         </div>
         <p className="mt-5 text-sm text-ink-soft/80">
+          <span className="font-semibold text-maroon-dark">Project advisors: </span>
+          {teamEn.projectAdvisors.map((a) => a.name).join(", ")}
+        </p>
+        <p className="mt-1.5 text-sm text-ink-soft/80">
           <span className="font-semibold text-maroon-dark">Field advisors: </span>
           {teamEn.advisors.join(", ")}
         </p>

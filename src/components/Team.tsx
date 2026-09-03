@@ -71,8 +71,8 @@ export default function Team() {
       <Reveal>
         <SectionHeading
           eyebrow="Araştırma Ekibi"
-          title="1 Yürütücü · 7 Araştırmacı · 3 Bursiyer"
-          description="Tarih, edebiyat, sosyoloji ve psikoloji disiplinlerinden bir araya gelen 11 kişilik ekip, alan uzmanı danışmanlarla birlikte çalışıyor. (Proje özeti kadroyu kısaca “1 yürütücü, 5 araştırmacı, 3 bursiyer” olarak tanımlasa da, iş paketi görev dağılımında fiilen 7 farklı araştırmacı adı geçmektedir.)"
+          title="1 Yürütücü · 5 Araştırmacı · 2 Proje Danışmanı · 3 Bursiyer"
+          description="Tarih, edebiyat, sosyoloji ve psikoloji disiplinlerinden bir araya gelen 11 kişilik ekip, alan uzmanı danışmanlarla birlikte çalışıyor."
         />
       </Reveal>
 
@@ -130,8 +130,22 @@ export default function Team() {
           </Reveal>
         ))}
 
-        {team.scholars.map((m, i) => (
+        {team.projectAdvisors.map((m, i) => (
           <Reveal key={m.name} delay={(team.researchers.length + i) * 60}>
+            <MemberCard
+              name={m.name}
+              role="Proje Danışmanı"
+              profileUrl={m.profileUrl}
+              avatarClass="bg-teal/15"
+            />
+          </Reveal>
+        ))}
+
+        {team.scholars.map((m, i) => (
+          <Reveal
+            key={m.name}
+            delay={(team.researchers.length + team.projectAdvisors.length + i) * 60}
+          >
             <MemberCard
               name={m.name}
               role="Bursiyer"

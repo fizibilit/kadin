@@ -84,6 +84,7 @@ type TeamMemberEn = { name: string; role?: string; profileUrl?: string };
 export const teamEn: {
   pi: TeamMemberEn;
   researchers: TeamMemberEn[];
+  projectAdvisors: TeamMemberEn[];
   advisors: string[];
   scholars: TeamMemberEn[];
 } = {
@@ -95,12 +96,15 @@ export const teamEn: {
   },
   researchers: [
     { name: "Prof. Dr. Beyhan KANTER" },
-    { name: "Prof. Dr. M. Ruhat YAŞAR" },
     { name: "Assoc. Prof. Dr. Nilüfer AKA ERDEM" },
     { name: "Assoc. Prof. Dr. Yavuz Sinan ULU" },
-    { name: "Asst. Prof. Dr. Erdinç GÜLCÜ" },
     { name: "Assoc. Prof. Dr. Metin Gani TAPAN" },
     { name: "Asst. Prof. Dr. M. Mücahid DALKILIÇ" },
+  ],
+  // Listed as "project advisors" in the work-package breakdown, not researchers.
+  projectAdvisors: [
+    { name: "Prof. Dr. M. Ruhat YAŞAR" },
+    { name: "Asst. Prof. Dr. Erdinç GÜLCÜ" },
   ],
   advisors: ["Literary scholar", "Psychologist", "Sociologist", "Historian"],
   scholars: [{ name: "Kader BÜLBÜL" }, { name: "Ayşe Nur ŞAHİN" }, { name: "Melek Şevval TAPAN" }],
