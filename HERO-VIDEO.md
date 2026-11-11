@@ -7,7 +7,7 @@ Video 10 saniyedir ve her 2 saniye, sitedeki bir yazı sahnesine denk gelir.
 
 - `public/video/hero.mp4`: masaüstü, 1920×1080, sessiz, her 6 karede bir anahtar kare (kaydırmada takılmasın diye)
 - `public/video/hero-mobile.mp4`: mobil, 720×1280, masaüstü videonun sağ-orta dikey kesiti
-- Dosya yoksa ya da yüklenemezse hero, `images/hero-collage.png` ile aynı akışta çalışır.
+- Dosya yoksa ya da yüklenemezse hero, koyu degrade zemin üzerinde aynı sahne metinleriyle çalışır.
 
 ## Konsept: geç dönem Osmanlı'da kadınların hikâyesi
 

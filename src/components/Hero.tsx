@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { project, stats } from "@/data/project";
 import { journals } from "@/data/journals";
 
 // Kaydırmayla çalışan video hero.
 // - Sayfa kaydırıldıkça /video/hero.mp4 karelerinde ilerler (video.currentTime = kaydırma ilerlemesi).
-// - Video dosyası yoksa ya da yüklenemezse mevcut kolaj görseli aynı kaydırma akışıyla gösterilir.
+// - Video dosyası yoksa ya da yüklenemezse koyu degrade zemin üzerinde aynı sahne metinleri gösterilir.
 // - Dar ekranlarda önce /video/hero-mobile.mp4, yoksa /video/hero.mp4 denenir.
 // - "Hareketi azalt" tercihinde sabit tek ekran (sticky/scrub yok).
 
@@ -185,28 +184,7 @@ export default function Hero() {
             }}
           />
 
-          {/* Katman 2: video yoksa kolaj görseli (kaydırmayla yavaşça yaklaşır) */}
-          <div
-            aria-hidden
-            className={`absolute inset-y-0 right-0 flex w-full items-start justify-center pt-6 transition-opacity duration-700 md:w-[64%] md:items-center md:pt-0 ${
-              ready ? "opacity-0" : "opacity-100 max-md:opacity-30"
-            } motion-reduce:opacity-100 motion-reduce:max-md:opacity-30`}
-            style={{
-              transform:
-                "translate3d(0, calc(var(--p, 0) * -5%), 0) scale(calc(1 + var(--p, 0) * 0.12))",
-            }}
-          >
-            <Image
-              src="/images/hero-collage.png"
-              alt=""
-              width={1920}
-              height={1080}
-              priority
-              className="h-auto w-full max-w-[760px] animate-float-slow drop-shadow-[0_30px_60px_rgba(0,0,0,0.35)]"
-            />
-          </div>
-
-          {/* Katman 3: kaydırmayla ilerleyen video */}
+          {/* Katman 2: kaydırmayla ilerleyen video */}
           <video
             ref={videoRef}
             muted
@@ -219,13 +197,13 @@ export default function Hero() {
             }`}
           />
 
-          {/* Katman 4: yalnızca metnin durduğu yerde okunabilirlik gölgesi */}
+          {/* Katman 3: yalnızca metnin durduğu yerde okunabilirlik gölgesi */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-gradient-to-t from-maroon-dark/85 via-maroon-dark/20 to-transparent md:bg-gradient-to-r md:from-maroon-dark/85 md:via-maroon-dark/40 md:to-transparent"
           />
 
-          {/* Katman 5: sahneler */}
+          {/* Katman 4: sahneler */}
           {scenes.map((s, i) => {
             const on = scene === i;
             const hiddenMotionReduce = i > 0 ? "motion-reduce:hidden" : "";
