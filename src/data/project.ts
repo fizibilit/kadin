@@ -12,7 +12,7 @@ export const project = {
 
 export const stats = [
   { value: "1869–1923", label: "İncelenen dönem" },
-  { value: "20+", label: "Taranan süreli yayın" },
+  { value: "35", label: "Tanıtılan süreli yayın" },
   { value: "4", label: "Katmanlı şiddet tipolojisi" },
   { value: "11", label: "Kişilik proje kadrosu" },
   { value: "18 Ay", label: "Proje süresi" },
