@@ -1,35 +1,50 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import SiteSearch from "./SiteSearch";
 
-const navGroups = [
+type NavItem = { href: string; label: string; children?: { href: string; label: string }[] };
+
+// Bağlantılar "/#..." biçimindedir: hem ana sayfada kaydırır hem de Dergiler gibi
+// ayrı sayfalardan ana sayfadaki bölüme götürür.
+const navGroups: { label: string; items: NavItem[] }[] = [
   {
     label: "Proje",
     items: [
-      { href: "#ozet", label: "Özet" },
-      { href: "#kazanim", label: "Kazanımlar" },
-      { href: "#yenilik", label: "Yenilikçi Yön" },
-      { href: "#yontem", label: "Yöntem" },
-      { href: "#is-plani", label: "İş Planı" },
+      { href: "/#ozet", label: "Özet" },
+      { href: "/#kazanim", label: "Kazanımlar" },
+      { href: "/#yenilik", label: "Yenilikçi Yön" },
+      { href: "/#yontem", label: "Yöntem" },
+      { href: "/#is-plani", label: "İş Planı" },
     ],
   },
   {
     label: "Araştırma",
     items: [
-      { href: "#tipoloji", label: "Tipoloji" },
-      { href: "#kronoloji", label: "Kronoloji" },
-      { href: "#kavram-haritasi", label: "Kavram Haritası" },
-      { href: "#arsiv", label: "Arşiv" },
-      { href: "#kaynaklar", label: "Kaynaklar" },
+      { href: "/#tipoloji", label: "Tipoloji" },
+      { href: "/#dergiler", label: "Dergiler" },
+      { href: "/#kavram-haritasi", label: "Kavram Haritası" },
+      { href: "/#arsiv", label: "Arşiv" },
+      { href: "/#kaynaklar", label: "Kaynaklar" },
     ],
   },
   {
     label: "Ekip & Çıktılar",
     items: [
-      { href: "#ekip", label: "Ekip" },
-      { href: "#ciktilar", label: "Çıktılar" },
-      { href: "#etki", label: "Etki" },
+      { href: "/#ekip", label: "Ekip" },
+      {
+        href: "/#ciktilar",
+        label: "Çıktılar",
+        children: [
+          { href: "/#ciktilar-kitap", label: "Kitap" },
+          { href: "/#ciktilar-tez", label: "Tez" },
+          { href: "/#ciktilar-bildiri", label: "Bildiri" },
+          { href: "/#ciktilar-makale", label: "Makale" },
+          { href: "/#ciktilar-rapor", label: "Rapor" },
+        ],
+      },
+      { href: "/#etki", label: "Etki" },
     ],
   },
 ];
@@ -72,7 +87,7 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8 py-3">
-        <a href="#top" className="flex items-center gap-2.5 shrink-0">
+        <Link href="/" className="flex items-center gap-2.5 shrink-0">
           <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gold text-gold font-display text-sm">
             OB
           </span>
@@ -83,7 +98,7 @@ export default function Header() {
           <span className="sm:hidden font-display text-sm font-semibold text-maroon-dark leading-tight">
             Osmanlı Basınında Şiddet
           </span>
-        </a>
+        </Link>
 
         <nav ref={navRef} className="hidden lg:flex items-center gap-1 text-sm text-ink-soft">
           {navGroups.map((g) => (
@@ -117,14 +132,25 @@ export default function Header() {
               {openGroup === g.label && (
                 <div className="absolute left-0 top-full mt-2 w-52 overflow-hidden rounded-xl border border-gold-light/40 bg-parchment py-1.5 shadow-xl">
                   {g.items.map((it) => (
-                    <a
-                      key={it.href}
-                      href={it.href}
-                      onClick={() => setOpenGroup(null)}
-                      className="block px-4 py-2 text-sm text-ink-soft transition-colors hover:bg-maroon/10 hover:text-maroon"
-                    >
-                      {it.label}
-                    </a>
+                    <div key={it.href}>
+                      <a
+                        href={it.href}
+                        onClick={() => setOpenGroup(null)}
+                        className="block px-4 py-2 text-sm text-ink-soft transition-colors hover:bg-maroon/10 hover:text-maroon"
+                      >
+                        {it.label}
+                      </a>
+                      {it.children?.map((c) => (
+                        <a
+                          key={c.href}
+                          href={c.href}
+                          onClick={() => setOpenGroup(null)}
+                          className="block border-l-2 border-gold-light/50 py-1.5 pl-7 pr-4 text-[13px] text-ink-soft/80 transition-colors hover:border-maroon hover:bg-maroon/10 hover:text-maroon ml-4"
+                        >
+                          {c.label}
+                        </a>
+                      ))}
+                    </div>
                   ))}
                 </div>
               )}
@@ -180,14 +206,25 @@ export default function Header() {
               </p>
               <div className="mt-1.5 flex flex-col">
                 {g.items.map((it) => (
-                  <a
-                    key={it.href}
-                    href={it.href}
-                    onClick={() => setOpen(false)}
-                    className="-mx-2 rounded-lg px-2 py-1.5 text-ink-soft transition-colors hover:bg-maroon/10 hover:text-maroon"
-                  >
-                    {it.label}
-                  </a>
+                  <div key={it.href} className="flex flex-col">
+                    <a
+                      href={it.href}
+                      onClick={() => setOpen(false)}
+                      className="-mx-2 rounded-lg px-2 py-1.5 text-ink-soft transition-colors hover:bg-maroon/10 hover:text-maroon"
+                    >
+                      {it.label}
+                    </a>
+                    {it.children?.map((c) => (
+                      <a
+                        key={c.href}
+                        href={c.href}
+                        onClick={() => setOpen(false)}
+                        className="ml-3 border-l-2 border-gold-light/50 py-1 pl-4 text-[13px] text-ink-soft/80 transition-colors hover:border-maroon hover:text-maroon"
+                      >
+                        {c.label}
+                      </a>
+                    ))}
+                  </div>
                 ))}
               </div>
             </div>

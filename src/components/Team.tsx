@@ -27,11 +27,11 @@ function MemberCard({
         {initials(name)}
       </span>
       <div className="min-w-0 flex-1">
-        <p className="flex items-center gap-1.5 text-sm font-semibold text-ink">
-          <span className="truncate">{name}</span>
+        <p className="flex items-start gap-1.5 text-sm font-semibold leading-snug text-ink">
+          <span className="break-words">{name}</span>
           {profileUrl && (
             <svg
-              className="h-3 w-3 shrink-0 text-gold"
+              className="mt-1 h-3 w-3 shrink-0 text-gold"
               viewBox="0 0 12 12"
               fill="none"
               aria-hidden

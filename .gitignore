@@ -46,3 +46,7 @@ next-env.d.ts
 # orijinal kaynak arşivi (kod deposunun parçası değil, sadece burada saklanıyor)
 /TÜBİTAK 3005/
 /TÜBİTAK 3005-*.zip
+
+# Kaynak dosyalar (yayına gerek yok)
+dergi g*.zip
+dergiler ve*.docx

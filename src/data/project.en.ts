@@ -93,7 +93,7 @@ export const teamEn: {
     name: "Prof. Dr. M. Fatih KANTER",
     role: "Principal Investigator",
     profileUrl:
-      "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=NPyYQsydu7pn_jChegdWIA&authorId=4410C0CA8A3CC7EB",
+      "https://akademik.yok.gov.tr/academician-details?authorGuidId=4410C0CA8A3CC7EB",
   },
   researchers: [
     { name: "Prof. Dr. Beyhan KANTER" },

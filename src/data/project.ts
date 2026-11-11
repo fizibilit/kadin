@@ -273,28 +273,28 @@ export const team: {
     name: "Prof. Dr. M. Fatih KANTER",
     role: "Proje Yürütücüsü",
     profileUrl:
-      "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=NPyYQsydu7pn_jChegdWIA&authorId=4410C0CA8A3CC7EB",
+      "https://akademik.yok.gov.tr/academician-details?authorGuidId=4410C0CA8A3CC7EB",
   },
   researchers: [
     {
       name: "Prof. Dr. Beyhan KANTER",
       profileUrl:
-        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=88C57957890CF3C6",
+        "https://akademik.yok.gov.tr/academician-details?authorGuidId=88C57957890CF3C6",
     },
     {
       name: "Doç. Dr. Nilüfer AKA ERDEM",
       profileUrl:
-        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=E54C1A7192288345",
+        "https://akademik.yok.gov.tr/academician-details?authorGuidId=E54C1A7192288345",
     },
     {
       name: "Doç. Dr. Yavuz Sinan ULU",
       profileUrl:
-        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&authorId=C9CCB01F5087D6F2",
+        "https://akademik.yok.gov.tr/academician-details?authorGuidId=C9CCB01F5087D6F2",
     },
     {
       name: "Doç. Dr. Metin Gani TAPAN",
       profileUrl:
-        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=E6BC6B06AF22D863",
+        "https://akademik.yok.gov.tr/academician-details?authorGuidId=E6BC6B06AF22D863",
     },
     { name: "Dr. Öğr. Üyesi M. Mücahid DALKILIÇ" },
   ],
@@ -303,12 +303,12 @@ export const team: {
     {
       name: "Prof. Dr. M. Ruhat YAŞAR",
       profileUrl:
-        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=FE72B8B9C44AF5CF",
+        "https://akademik.yok.gov.tr/academician-details?authorGuidId=FE72B8B9C44AF5CF",
     },
     {
       name: "Dr. Öğr. Üyesi Erdinç GÜLCÜ",
       profileUrl:
-        "https://akademik.yok.gov.tr/AkademikArama/AkademisyenGorevOgrenimBilgileri?islem=direct&sira=_D2bDdARDMCOgjHVGzFVZw&authorId=5030931263171C71",
+        "https://akademik.yok.gov.tr/academician-details?authorGuidId=5030931263171C71",
     },
   ],
   advisors: ["Edebiyatçı", "Psikolog", "Sosyolog", "Tarihçi"],
@@ -316,7 +316,12 @@ export const team: {
     "tarih alanında uzman, özellikle Osmanlı dönemi dergileri üzerine çalışan bir danışman",
   externalReviewers:
     "sosyoloji alanında doktora yapmış ve dezavantajlı gruplarla saha deneyimi bulunan dış destek sağlayıcı akademisyenler",
-  scholars: [{ name: "Kader BÜLBÜL" }, { name: "Ayşe Nur ŞAHİN" }, { name: "Melek Şevval TAPAN" }],
+  // profileUrl: ORCID bağlantısı (bursiyerlerin YÖKSİS profili yok).
+  scholars: [
+    { name: "Kader BÜLBÜL", profileUrl: "https://orcid.org/0009-0006-4515-1760" },
+    { name: "Ayşe Nur ŞAHİN", profileUrl: "https://orcid.org/0009-0000-5368-5101" },
+    { name: "Melek Şevval TAPAN", profileUrl: "https://orcid.org/0009-0009-1614-239X" },
+  ],
   scholarOutput:
     "Bursiyerlerin her biri proje konusu üzerine birer bildiri/makale hazırlayacak.",
 };
@@ -363,145 +368,6 @@ export const chronologyArchiveCounts: Record<string, number> = {
   "Türk Kadını": 8,
   "Genç Kadın": 97,
 };
-
-export const chronology = [
-  {
-    year: 1869,
-    endYear: null as number | null,
-    name: "Terakki-i Muhadderat",
-    coverImage: null as string | null,
-    description:
-      "Terakki gazetesinin kadınlara yönelik eki olarak yayımlanan, bilinen ilk Osmanlı kadın dergisi.",
-    issueCount: null as number | null,
-    frequency: "",
-    editor: "",
-  },
-  {
-    year: 1880,
-    endYear: null as number | null,
-    name: "Aile",
-    coverImage: "/images/dergi-kapaklari/aile.jpg" as string | null,
-    description:
-      "Aileye, yani kadınlara, çocuklara ve ev işlerine dair çeşitli konuları içeren mecmua.",
-    issueCount: 3,
-    frequency: "Haftalık",
-    editor: "Sahibi: Mihran · Muharriri: Sami",
-  },
-  {
-    year: 1882,
-    endYear: 1883,
-    name: "İnsaniyet",
-    coverImage: null as string | null,
-    description:
-      "Kadınlara dair olarak senede on iki nüsha çıkarılması planlanan özel risale; ancak yalnızca 2 sayı yayımlanabilmiştir.",
-    issueCount: 2,
-    frequency: "Planlanan: yılda 12 sayı",
-    editor: "",
-  },
-  {
-    year: 1887,
-    endYear: null as number | null,
-    name: "Mürüvvet",
-    coverImage: "/images/dergi-kapaklari/muruvvet.jpg" as string | null,
-    description: "Haftada bir kere neşrolunan Mürüvvet Gazetesi'nin hanımlara mahsus nüshası.",
-    issueCount: 9,
-    frequency: "Haftalık",
-    editor: "Müdürü: Mehmet Ziyaettin",
-  },
-  {
-    year: 1895,
-    endYear: 1908,
-    name: "Hanımlara Mahsus Gazete",
-    coverImage: "/images/dergi-kapaklari/hanimlara-mahsus-gazete.jpg" as string | null,
-    description:
-      "\"Gazetemizi neşretmekten asıl maksadımız, ülke ve devletin menfaatine ciddi biçimde hizmet etmektir.\" Dönemin en uzun soluklu ve en çok sayıya ulaşan kadın dergisi.",
-    issueCount: 612,
-    frequency: "Önce haftada iki kez, sonra haftalık",
-    editor: "",
-  },
-  {
-    year: 1908,
-    endYear: 1909,
-    name: "Mehasin",
-    coverImage: null as string | null,
-    description: "Her Rumi ayın 25. günü çıkan, hanımlara mahsus resimli gazete.",
-    issueCount: 12,
-    frequency: "Aylık",
-    editor: "Sahib-i imtiyaz: Asaf Muammer · Müdür ve sermuharrir: Mehmet Rauf",
-  },
-  {
-    year: 1908,
-    endYear: null as number | null,
-    name: "Demet",
-    coverImage: null as string | null,
-    description: "Edebi, ilmi, siyasi, hanımlara mahsus haftalık resimli mecmua.",
-    issueCount: 7,
-    frequency: "Haftalık",
-    editor: "",
-  },
-  {
-    year: 1913,
-    endYear: 1921,
-    name: "Kadınlar Dünyası",
-    coverImage: "/images/dergi-kapaklari/kadinlar-dunyasi.jpg" as string | null,
-    description:
-      "\"Kadınlığın hukukunu ve menfaatini savunan resimli gazete; sayfalarımız ırk ve mezhep ayrımı gözetmeksizin bütün Osmanlı kadınlarına açıktır.\" Döneminin en etkili kadın hakları savunucusu yayınlarından.",
-    issueCount: 208,
-    frequency: "Önce günlük, sonra haftalık",
-    editor: "",
-  },
-  {
-    year: 1914,
-    endYear: null as number | null,
-    name: "Siyanet",
-    coverImage: "/images/dergi-kapaklari/siyanet.jpg" as string | null,
-    description: "Toplumsal, edebi, ilmi, iktisadi kadın ve aile gazetesi.",
-    issueCount: null as number | null,
-    frequency: "",
-    editor: "",
-  },
-  {
-    year: 1914,
-    endYear: 1918,
-    name: "Hanımlar Âlemi",
-    coverImage: "/images/dergi-kapaklari/hanimlar-alemi.jpg" as string | null,
-    description: "Perşembe günleri çıkan; edebi, toplumsal, resimli hanım gazetesi.",
-    issueCount: 32,
-    frequency: "Haftalık",
-    editor: "",
-  },
-  {
-    year: 1917,
-    endYear: 1918,
-    name: "Bilgi Yurdu",
-    coverImage: "/images/dergi-kapaklari/bilgi-yurdu.jpg" as string | null,
-    description:
-      "Hanımlar Bilgi Yurdu Müessesesi'ne bağlı aylık risale. \"Ders Kısmı\" adlı bir eki bulunuyordu; 13. sayıdan sonra \"Bilgi Yurdu Mecmuası\" adını aldı.",
-    issueCount: 17,
-    frequency: "Aylık",
-    editor: "Müdür ve Sermuharrir: Ahmet Edip, sonra Macit Şevket",
-  },
-  {
-    year: 1918,
-    endYear: 1919,
-    name: "Türk Kadını",
-    coverImage: null as string | null,
-    description: "Kadınlar için çalışır, on beş günde bir çıkar.",
-    issueCount: 21,
-    frequency: "On beş günlük",
-    editor: "",
-  },
-  {
-    year: 1918,
-    endYear: null as number | null,
-    name: "Genç Kadın",
-    coverImage: "/images/dergi-kapaklari/genc-kadin.jpg" as string | null,
-    description: "On beş günlük, resimli mecmua.",
-    issueCount: null as number | null,
-    frequency: "On beş günlük",
-    editor: "İmtiyaz Sahibi: Seyyit Tahir · Müdiresi: Hatice Refik",
-  },
-];
 
 export const bibliographyNote =
   "Eski Harfli Türkçe Kadın Dergileri Bibliyografyası (Toska ve ark., 1992)";
@@ -564,45 +430,147 @@ export const updates: { date: string; title: string; text: string }[] = [
   {
     date: "2026-09",
     title: "Proje tanıtım sitesi yayına alındı",
-    text: "Dijital arşiv, tipoloji, kronoloji ve kavram haritası bölümleriyle projenin tanıtım web sitesi erişime açıldı.",
+    text: "Dijital arşiv, tipoloji, dergiler ve kavram haritası bölümleriyle projenin tanıtım web sitesi erişime açıldı.",
   },
 ];
 
-// Proje kapsamında yayımlanması planlanan bilimsel çıktılar. Şu an için sayısı ve
-// niteliği başvuru formunda belirtilen "planlanan" çıktılardır; her yayın
-// tamamlandığında `items` dizisine {title, authors, venue, year, url} olarak
-// eklenerek link üzerinden erişilebilir hâle getirilir.
-type PublicationItem = {
+// Proje çıktıları (Kitap, Tez, Bildiri, Makale, Rapor). Her yayın tamamlandıkça ilgili
+// kategorinin `items` dizisine eklenir. Yayın başlıkları kısaltılmadan, tam olarak gösterilir.
+export type PublicationItem = {
   title: string;
   authors?: string;
   venue?: string;
+  date?: string;
   year?: string | number;
-  url: string;
+  url?: string;
+  abstract?: string;
 };
 
-export const publications: {
-  category: string;
-  plannedCount: number;
+export type PublicationCategory = {
+  id: "kitap" | "tez" | "bildiri" | "makale" | "rapor";
+  title: string;
+  plannedCount?: number;
   note: string;
   items: PublicationItem[];
-}[] = [
+};
+
+export const publicationCategories: PublicationCategory[] = [
   {
-    category: "Uluslararası Makale / Bildiri",
-    plannedCount: 2,
-    note: "Proje bulgularına dayalı iki uluslararası makale/bildirinin hakemli dergilerde yayımlanması ve sempozyumlarda sunulması planlanmaktadır.",
+    id: "kitap",
+    title: "Kitap",
+    plannedCount: 1,
+    note: "Latin alfabesine aktarılan metinlerin bir araya getirilerek kitap hâline getirilmesi planlanmaktadır.",
     items: [],
   },
   {
-    category: "Yüksek Lisans Tezi",
+    id: "tez",
+    title: "Tez",
     plannedCount: 2,
     note: "İki araştırmacının yüksek lisans tezlerini proje verileriyle ilişkilendirerek tamamlaması planlanmaktadır.",
     items: [],
   },
   {
-    category: "Kapsamlı Kitap",
-    plannedCount: 1,
-    note: "Latin alfabesine aktarılan metinlerin bir araya getirilerek kitap hâline getirilmesi planlanmaktadır.",
+    id: "bildiri",
+    title: "Bildiri",
+    note: "Proje kapsamında sempozyum ve kongrelerde sunulan bildiriler.",
+    items: [
+      {
+        title: "Mehasin Dergisinde İdeal Kadın",
+        authors: "Ayşe Nur Şahin",
+        venue: "Kilis 7 Aralık Üniversitesi Lisansüstü Öğrenci Sempozyumu",
+        date: "21–22 Nisan 2026",
+      },
+      {
+        title: "Demet Mecmuasında Kadına Yönelik Şiddet ve Kadın Hakları",
+        authors: "Kader Bülbül",
+        venue: "Kilis 7 Aralık Üniversitesi Lisansüstü Öğrenci Sempozyumu",
+        date: "21–22 Nisan 2026",
+      },
+      {
+        title: "Kadınlar Dünyası (1913-1921) Dergisi'nde Sembolik Şiddet Eleştirisi",
+        authors: "Nilüfer Aka Erdem",
+        venue: "Gölcük Belediyesi Edebiyat Sempozyumları – Kadın ve Aile Dergileri Sempozyumu",
+        date: "15–16 Ekim 2026",
+      },
+      {
+        title: "Mehasin Dergisinde Ataerkil Aile ve Erkek Egemenliği",
+        venue: "TUDOK",
+      },
+      {
+        title: "Demet Dergisinde İdeal Kadın",
+        venue: "TUDOK",
+      },
+    ],
+  },
+  {
+    id: "makale",
+    title: "Makale",
+    note: "Proje bulgularına dayanan, hakemli uluslararası dergilerde yayımlanan makaleler.",
+    items: [
+      {
+        title:
+          "Women's Voices Against Patriarchal Violence: Rights, Resistance, and Womanhood in Kadınlar Dünyası (1913)",
+        authors:
+          "Muhammet Fatih Kanter, Metin Gani Tapan, Erdinç Gülcü, Nilüfer Aka Erdem, Yavuz Sinan Ulu, Kader Bülbül, Ayşe Nur Şahin, Melek Şevval Tapan",
+        venue: "Violence Against Women (SAGE)",
+        year: 2026,
+        url: "https://doi.org/10.1177/10778012261504821",
+        abstract:
+          "This study examines how Ottoman women articulated and challenged patriarchal domination in Kadınlar Dünyası (1913). Drawing on qualitative document analysis of its first 100 issues (820 pages), four themes emerged: naming oppression and rights deprivation, domestic and public manifestations of violence, exclusion from education and employment, and resistance through rights claims and redefining womanhood. Situated within the constitutional transformations following 1908, these discourses expose the tensions between proclaimed liberty and persistent male authority. The findings demonstrate how contributors transformed critiques of gendered domination into claims of dignity, equality, and public participation, highlighting the journal's significance in Ottoman women's history.",
+      },
+      {
+        title:
+          "From Patriarchal Household to Family Partnership: Reimagining Family Life in the Late Ottoman Women's Press, 1908–21",
+        authors:
+          "Muhammet Fatih Kanter, Metin Gani Tapan, Erdinç Gülcü, Nilüfer Aka Erdem, Yavuz Sinan Ulu, Kader Bülbül, Ayşe Nur Şahin, Melek Şevval Tapan, Muhammed Mücahid Dalkılıç, Beyhan Kanter, Muhammet Ruhat Yaşar",
+        venue: "Journal of Family History (SAGE)",
+        year: 2026,
+        url: "https://doi.org/10.1177/03631990261503996",
+        abstract:
+          "This study examines how three late Ottoman women's periodicals, Mehasin, Siyânet, and Kadınlar Dünyası, reimagined family life between 1908 and 1921. Using qualitative document analysis, 159 issues (2,176 pages) were screened, and relevant texts were examined using inductive thematic analysis. Four themes emerged: critiques of patriarchal households, family partnership through women's social and economic contributions, consent and legal personhood in marriage, and educated womanhood as a foundation for family renewal. Rather than rejecting the family, these periodicals challenged women's dependence and male authority, envisioning reciprocal family relationships and positioning family reform within the framework of late Ottoman feminist thought.",
+      },
+    ],
+  },
+  {
+    id: "rapor",
+    title: "Rapor",
+    note: "Proje kapsamında hazırlanan raporlar tamamlandıkça burada listelenecektir.",
     items: [],
+  },
+];
+
+// Proje başvuru/ara rapor formundaki "Dönem İçinde Proje Kapsamında Yapılan Yayım
+// Faaliyetleri" tablosu (etkinlik türü, paydaş/olası kullanıcılar, zaman ve süre).
+export const disseminationActivities: {
+  activity: string;
+  audience: string;
+  when: string;
+  url?: string;
+}[] = [
+  {
+    activity:
+      "Kilis 7 Aralık Üniversitesi Lisansüstü Öğrenci Sempozyumu – Ayşe Nur Şahin – “Mehasin Dergisinde İdeal Kadın” başlıklı bildiri sunumu",
+    audience: "Kadın çalışmaları, Osmanlı basını ve edebiyat araştırmacıları",
+    when: "21–22 Nisan 2026",
+  },
+  {
+    activity:
+      "Kilis 7 Aralık Üniversitesi Lisansüstü Öğrenci Sempozyumu – Kader Bülbül – “Demet Mecmuasında Kadına Yönelik Şiddet ve Kadın Hakları” başlıklı bildiri sunumu",
+    audience: "Kadına yönelik şiddet, kadın hakları ve Osmanlı basını araştırmacıları",
+    when: "21–22 Nisan 2026",
+  },
+  {
+    activity:
+      "Sempozyum – Nilüfer Aka Erdem, Gölcük Belediyesi Edebiyat Sempozyumları – Kadın ve Aile Dergileri Sempozyumu – “Kadınlar Dünyası (1913-1921) Dergisi'nde Sembolik Şiddet Eleştirisi” başlıklı bildiri sunumu",
+    audience: "Kadın çalışmaları, tarih, edebiyat ve toplumsal cinsiyet alanlarındaki araştırmacılar",
+    when: "15–16 Ekim 2026",
+  },
+  {
+    activity: "Proje web sitesi – Dijital yayım faaliyeti",
+    audience:
+      "Akademisyenler, araştırmacılar, lisansüstü öğrenciler ve Osmanlı kadın basınına ilgi duyan kullanıcılar",
+    when: "Yayında",
+    url: "https://kadin-self.vercel.app/",
   },
 ];
 

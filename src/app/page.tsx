@@ -1,5 +1,4 @@
 import CiteThis from "@/components/CiteThis";
-import Chronology from "@/components/Chronology";
 import ConceptMap from "@/components/ConceptMap";
 import ContributeCallout from "@/components/ContributeCallout";
 import DigitalArchive from "@/components/DigitalArchive";
@@ -9,6 +8,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Impact from "@/components/Impact";
 import Innovation from "@/components/Innovation";
+import Journals from "@/components/Journals";
 import Method from "@/components/Method";
 import NationalGains from "@/components/NationalGains";
 import Periodicals from "@/components/Periodicals";
@@ -38,7 +38,7 @@ export default function Home() {
         <Timeline />
         <Team />
         <Periodicals />
-        <Chronology />
+        <Journals />
         <ViolenceTrend />
         <ConceptMap />
         <WordCloud />

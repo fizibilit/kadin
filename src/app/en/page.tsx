@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import {
   projectEn,
@@ -124,7 +124,7 @@ export default function EnglishSummaryPage() {
               This is a summary in English.
             </span>
             <span>
-              The full site — typology, digital archive, chronology and concept map — is in Turkish.
+              The full site — typology, digital archive, journals and concept map — is in Turkish.
             </span>
           </Reveal>
 
@@ -201,8 +201,8 @@ export default function EnglishSummaryPage() {
         <p className="mt-5 text-sm leading-relaxed text-ink-soft/80">
           General-interest newspapers of the period (e.g. İkdam, Tercüman-ı Hakikat, Sebilürreşat) are
           surveyed as comparison sources. See the Turkish site&rsquo;s{" "}
-          <Link href="/#kronoloji" className="text-maroon underline underline-offset-2">
-            Chronology
+          <Link href="/#dergiler" className="text-maroon underline underline-offset-2">
+            Journals
           </Link>{" "}
           section for detail on each publication.
         </p>
@@ -242,7 +242,7 @@ export default function EnglishSummaryPage() {
         </p>
         <p className="mt-4 text-sm text-ink-soft/70">
           For the full project site — including the interactive violence typology, the searchable
-          digital archive of transcribed texts, the periodical chronology and the concept map — visit
+          digital archive of transcribed texts, the journal pages and the concept map — visit
           the{" "}
           <Link href="/" className="text-maroon underline underline-offset-2">
             Turkish-language site
