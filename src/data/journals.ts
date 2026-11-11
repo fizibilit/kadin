@@ -1,8 +1,7 @@
 // Dergiler ve yayın politikaları — kaynak: "dergiler ve yayın politikaları" Word belgesi
 // (proje ekibi). Metinler belgeden aynen alınmış, yalnızca başlık önekleri atılmıştır.
 // Paragraf biçimi: "## " ile başlayan satır alt başlık, "- " ile başlayan satır madde işaretidir.
-// Belgede iki kez geçen dergiler (Hanımlara Mahsus Gazete, İnci/Yeni İnci, Kadınlık,
-// Kadın-Selanik) tek sayfada birleştirilmiş, iki bölümün metni de korunmuştur.
+// Word belgesindeki her başlık ayrı bir dergi sayfasıdır (35 başlık).
 // archiveKey: Dijital Arşiv'deki kayıt sayısını bulmak için chronologyArchiveCounts anahtarı.
 
 export type Journal = {
@@ -120,14 +119,23 @@ export const journals: Journal[] = [
     "name": "Hanımlara Mahsus Gazete",
     "year": 1895,
     "covers": [
-      "/images/dergi-kapaklari/hanimlara-mahsus-gazete.jpg",
-      "/images/dergi-kapaklari/hanimlara-mahsus-gazete-1.jpg"
+      "/images/dergi-kapaklari/hanimlara-mahsus-gazete.jpg"
     ],
     "archiveKey": "Hanımlara Mahsus Gazete",
     "paragraphs": [
       "Hanımlara Mahsus Gazete, ilk sayısını 1 Ağustos 1895 tarihinde yayımlamıştır. İsmi her ne kadar \"gazete\" olarak geçse de dönemin matbuat dilinde gazete, mecmua, mevkute ve risale kavramlarının sıklıkla birbiri yerine kullanılmasından ve o devirde tür ayrımının kesin çizgilerle vurgulanmamasından ötürü süreli yayın literatüründe bir dergi olarak kabul edilir. Tarîk gazetesinin başyazarı İbnülhakkı Mehmet Tahir tarafından çıkarılan yayının temel amacı; edep, ahlak ve iffet sınırları dâhilinde kalmak koşuluyla, kadınları ilgilendiren her türlü meseleyi ele alan yararlı makaleleri ve günlük havadisleri okuyucuya sunmak biçiminde özetlenir.",
       "1906 yılına kadar aralıksız neşriyatını sürdüren ve 580 sayıya ulaşarak devrinin en uzun soluklu kadın yayınlarından biri olan derginin yazar kadrosunda; Fatma Aliye Hanım, Nigâr bint-î Osman, Emine Semiye, Makbule Leman, Talat Ali, Ahmet Rasim ve Mustafa Asım gibi dönemin önde gelen isimleri yer alır.",
-      "Mecmuanın genel muhtevasını; ev yönetimi, iktisat ve tasarruf bilinci, aile içi ilişkiler, moda, sıhhi tavsiyeler, şiir ve hikâyeler ile muhtelif haberler ve okur mektupları oluşturur.",
+      "Mecmuanın genel muhtevasını; ev yönetimi, iktisat ve tasarruf bilinci, aile içi ilişkiler, moda, sıhhi tavsiyeler, şiir ve hikâyeler ile muhtelif haberler ve okur mektupları oluşturur."
+    ]
+  },
+  {
+    "slug": "hanimlara-mahsus-gazete-2",
+    "name": "Hanımlara Mahsus Gazete (2)",
+    "year": 1895,
+    "covers": [
+      "/images/dergi-kapaklari/hanimlara-mahsus-gazete-1.jpg"
+    ],
+    "paragraphs": [
       "1895 yılında matbuat alemine katılan Hanımlara Mahsus Gazete, kadınlar öncülüğünde neşredilen ikinci süreli yayın olma vasfını taşır. İmtiyaz sahipliğini Mehmet Tahir, idare müdürlüğünü ise eşi Şadiye Hanım’ın yürüttüğü mecmua, sayfalarını ağırlıklı olarak kadın müelliflerin makale ve şiirlerine açmıştır.",
       "Azerbaycan kökenli Türk eğitimci, yazar ve siyasetçi Tezer Taşkıran; yayının temel felsefesini \"iyi bir eş, iyi bir anne ve iyi bir Müslüman olmak\" şeklinde üç sacayağına dayandırır. Buna karşın araştırmacı Serpil Çakır, derginin yalnızca bu geleneksel rolleri benimsetmekle yetinmediğini; söz konusu kimlikleri bütünüyle dışlamaksızın kadının cemiyet içindeki konumunu sorguladığını ve erkeklerle mukayeseli değerlendirmelere giriştiğini belirtir.",
       "Mecmuanın ilk nüshasında yer alan \"Tahdîs-i Nimet Tâyin-i Meslek\" başlıklı takdim yazısında; devrin padişahı II. Abdülhamid’in maarif sahasındaki ıslahatları, açtığı mektepler ve eğitimin tabana yayılması yönündeki gayretleri takdirle karşılanmış, duyulan memnuniyet açıkça kayda geçirilmiştir.",
@@ -182,13 +190,22 @@ export const journals: Journal[] = [
   {
     "slug": "kadin-selanik",
     "name": "Kadın (Selanik)",
-    "subtitle": "Bir Jön Türk Dergisi",
     "year": 1908,
     "covers": [
       "/images/dergi-kapaklari/kadin-selanik.jpg"
     ],
     "paragraphs": [
-      "26 Ekim 1908 ile Mayıs 1909 tarihleri arasında Selanik’te yayımlanan süreli yayın, neşriyat hayatını toplam 30 sayı ile tamamlamıştır. İmtiyaz sahipliğini Mustafa İbrahim’in üstlendiği mecmua; kadınların tahsil imkânlarının genişletilmesi, kız talebelerin Dârülfünun’a kabul edilmesi, kız mekteplerinin yetersizliği, kadınlara yönelik hürmetsiz yaklaşımlar, örf ve âdetler, ahlak, aşk, izdivaç müessesesi, çocuk terbiyesi ve kadınların iktisadi hayata katılımı gibi devrin hayatî meselelerini kapsamlı biçimde sayfalarına taşımıştır. Yayının güçlü ve zengin muharrir kadrosunda Ayşe İsmet, Câvide Peyker, Emine Semiye, Fatma Seniye, Zekiye, Fatma bint-i Hâşim, Nakiye ve Nigâr bint-i Osman gibi öncü kadın kalemlerin yanı sıra Abdullah Cevdet, A. Ulvi, Abdülhak Hâmid, Mehmed Emin, Celâl Sahir ve Kâzım Nami gibi dönemin mühim erkek müellif ve aydınları bir araya gelmiştir.",
+      "26 Ekim 1908 ile Mayıs 1909 tarihleri arasında Selanik’te yayımlanan süreli yayın, neşriyat hayatını toplam 30 sayı ile tamamlamıştır. İmtiyaz sahipliğini Mustafa İbrahim’in üstlendiği mecmua; kadınların tahsil imkânlarının genişletilmesi, kız talebelerin Dârülfünun’a kabul edilmesi, kız mekteplerinin yetersizliği, kadınlara yönelik hürmetsiz yaklaşımlar, örf ve âdetler, ahlak, aşk, izdivaç müessesesi, çocuk terbiyesi ve kadınların iktisadi hayata katılımı gibi devrin hayatî meselelerini kapsamlı biçimde sayfalarına taşımıştır. Yayının güçlü ve zengin muharrir kadrosunda Ayşe İsmet, Câvide Peyker, Emine Semiye, Fatma Seniye, Zekiye, Fatma bint-i Hâşim, Nakiye ve Nigâr bint-i Osman gibi öncü kadın kalemlerin yanı sıra Abdullah Cevdet, A. Ulvi, Abdülhak Hâmid, Mehmed Emin, Celâl Sahir ve Kâzım Nami gibi dönemin mühim erkek müellif ve aydınları bir araya gelmiştir."
+    ]
+  },
+  {
+    "slug": "bir-jon-turk-dergisi-kadin",
+    "name": "Bir Jön Türk Dergisi Kadın",
+    "year": 1908,
+    "covers": [
+      "/images/dergi-kapaklari/kadin-selanik.jpg"
+    ],
+    "paragraphs": [
       "Selanik’te Örtülü Çarşı mevkisinde yer alan Asır Matbaası’nda basılan Kadın, her biri 16 sayfalık formalar hâlinde hazırlanmış, 1 kuruş bedelle ve pazartesi günleri okuyucuyla buluşmuştur. II. Meşrutiyet devrinin pek çok süreli yayını gibi kısa soluklu kalarak neşir hayatını toplam 30 sayı ile tamamlamıştır.",
       "Genç İttihatçı erkek aydınlar öncülüğünde 1908-1909 yıllarında çıkarılan mecmua; milli şuurla donanmış ideal anne profilini ve çağdaş kadının cemiyetteki yerini inşa etmeyi temel gaye edinmiştir. Söz konusu süreli yayının muhtevası ve yayın politikası, İkinci Meşrutiyet Döneminde Bir Jön Türk Dergisi: Kadın adlı müstakil akademik araştırmada sistematik bir yaklaşımla incelenerek ortaya konmuştur."
     ]
@@ -275,7 +292,7 @@ export const journals: Journal[] = [
     ]
   },
   {
-    "slug": "kadinlik-hayati",
+    "slug": "kadinlik",
     "name": "Kadınlık (Kadınlık Hayatı)",
     "year": 1914,
     "covers": [
@@ -285,7 +302,17 @@ export const journals: Journal[] = [
       "“Kadınlığın varlığını ve memlekette bir mevkii bulunduğunu müdafaa eder. Perşembe günleri neşrolunur musavver gazetedir. Sahâifimiz bilumum Osmanlı hanımları âsârına küşâdedir” alt başlığı ve misyonuyla yayımlanan Kadınlık, 21 Mart 1914 ile 30 Mayıs 1914 tarihleri arasında neşriyatını sürdürmüş ve toplam 11 sayı olarak çıkmıştır. Kadınların tahsili, cemiyetteki mevkii ve teşkilatlanması hususunda geliştirdiği söylem dolayısıyla Meşrutiyet devri kadın matbuatı içinde mühim bir yer edinmiştir.",
       "Osmanlı kadın hareketinin önde gelen birçok simasına sayfalarını açan haftalık süreli yayının başyazarlığını Nigâr Hanım, sorumlu müdürlüğünü Süleyman Tevfik, imtiyaz sahipliğini ise Hacı Cemal ile Nigâr Cemal üstlenmiştir.",
       "Kadının toplumsal statüsünü hak ettiği seviyeye ulaştırmayı ve kamusal sorumluluk şuurunu pekiştirmeyi yayın felsefesinin merkezine yerleştiren mecmua; feminizm, kadınlık şuuru, izdivaç, eğitim, hukuk, çalışma hayatı, moda, beden estetiği ve biçki-dikiş gibi muhtelif temaları sayfalarına taşımıştır. Bu fikrî yazıların yanı sıra tefrika edilen romanlar, tarihe mal olmuş meşhur kadın portreleri, hikâyeler, musiki notaları ve şiirlerle de zengin bir edebi-kültürel muhteva sunmuştur.",
-      "Mecmuanın muharrirleri arasında yer alan Ebüssüreyya Sami, ilk sayıda yayımlanan \"Bizde Kadın Zihniyeti\" başlıklı makalesinde; Osmanlı kadını geleneksel kalıpları kırmadıkça ve kadınlık rolünü yalnızca ev işleri ile çocuk bakımına indirgemekten sıyrılmadıkça toplumsal mevkisinde hakiki bir terakki sağlanamayacağını açıkça ortaya koymuştur.",
+      "Mecmuanın muharrirleri arasında yer alan Ebüssüreyya Sami, ilk sayıda yayımlanan \"Bizde Kadın Zihniyeti\" başlıklı makalesinde; Osmanlı kadını geleneksel kalıpları kırmadıkça ve kadınlık rolünü yalnızca ev işleri ile çocuk bakımına indirgemekten sıyrılmadıkça toplumsal mevkisinde hakiki bir terakki sağlanamayacağını açıkça ortaya koymuştur."
+    ]
+  },
+  {
+    "slug": "kadinlik-hayati",
+    "name": "Kadınlık Hayatı",
+    "year": 1914,
+    "covers": [
+      "/images/dergi-kapaklari/kadinlik-hayati.jpg"
+    ],
+    "paragraphs": [
       "“Kadınlığın teâlîsine hâdim, sahâifi kadın kalemlerine küşadedir” (Kadınlığın yükselmesine hizmet eden, sayfaları kadın kalemlerine açık olan) alt başlığı ve yayın felsefesiyle neşredilen süreli yayın, kadınların cemiyet hayatındaki statüsünü güçlendirmeyi ve eğitim seviyelerini yükseltmeyi başlıca misyon edinmiştir.",
       "Künyesinde edebî, fennî ve içtimaî muhtevalı, cumartesi günleri çıkarılan resimli bir kadın gazetesi/mecmuası olduğu belirtilen yayın, neşir hayatını yalnızca tek bir sayıyla tamamlamıştır. Neşredildiği kesin tarih tespit edilemeyen bu tek nüshanın yazar kadrosunda ise devrin öne çıkan kadın müelliflerinden Emine Seher Ali, Atiye Şükran ve Bedia Leman gibi dikkat çekici isimlerin yazıları yer almaktadır."
     ]
@@ -360,15 +387,24 @@ export const journals: Journal[] = [
     ]
   },
   {
+    "slug": "inci",
+    "name": "İnci",
+    "year": 1919,
+    "covers": [
+      "/images/dergi-kapaklari/inci.jpg"
+    ],
+    "paragraphs": [
+      "1 Şubat 1919 ile 1 Nisan 1921 tarihleri arasında 26 sayı çıkan dergi, yayınına bir yıl ara verdikten sonra 27. sayısından itibaren Yeni İnci adıyla yeniden yayımlanmış ve bu yeni döneminde 12 sayı daha basılmıştır. Derginin sahibi Sedat Simavi, savaş yıllarında okuyup etkilendiği Fransız Femina dergisini örnek alarak Osmanlı kadınlarının da böyle bir yayına ihtiyaç duyduğunu düşünmüş ve İnci dergisini çıkarmaya karar vermiştir. Birinci Dünya Savaşı’nın hemen ardından yayımlanan derginin temel amacı; yıllardır süren savaşların acısını hafifletmek ve savaş haberlerinden yorulan ruhları dinlendirmektir. Bu amaçla kurulan güçlü yazar kadrosunda; şiirleriyle Faruk Nafiz, Yusuf Ziya, Yahya Kemal ve Recaizade Mahmut Ekrem yer alırken, hikâyeleriyle Ömer Seyfettin ve Reşat Nuri gibi önemli yazarlar dergiye katkı sağlamıştır."
+    ]
+  },
+  {
     "slug": "inci-ve-yeni-inci",
     "name": "İnci ve Yeni İnci",
     "year": 1919,
     "covers": [
-      "/images/dergi-kapaklari/inci.jpg",
       "/images/dergi-kapaklari/yeni-inci.jpg"
     ],
     "paragraphs": [
-      "1 Şubat 1919 ile 1 Nisan 1921 tarihleri arasında 26 sayı çıkan dergi, yayınına bir yıl ara verdikten sonra 27. sayısından itibaren Yeni İnci adıyla yeniden yayımlanmış ve bu yeni döneminde 12 sayı daha basılmıştır. Derginin sahibi Sedat Simavi, savaş yıllarında okuyup etkilendiği Fransız Femina dergisini örnek alarak Osmanlı kadınlarının da böyle bir yayına ihtiyaç duyduğunu düşünmüş ve İnci dergisini çıkarmaya karar vermiştir. Birinci Dünya Savaşı’nın hemen ardından yayımlanan derginin temel amacı; yıllardır süren savaşların acısını hafifletmek ve savaş haberlerinden yorulan ruhları dinlendirmektir. Bu amaçla kurulan güçlü yazar kadrosunda; şiirleriyle Faruk Nafiz, Yusuf Ziya, Yahya Kemal ve Recaizade Mahmut Ekrem yer alırken, hikâyeleriyle Ömer Seyfettin ve Reşat Nuri gibi önemli yazarlar dergiye katkı sağlamıştır.",
       "1 Şubat 1919 Cumartesi günü, “Her ayın ilk günü çıkar, kadınlığa ait bilcümle nazari ve ilmi meselelerden bahseder, resimli kadın mecmuasıdır” Cümleleriyle yayın hayatına başlamıştır. Dergi, 1 Şubat 1335 (1 Şubat 1919)- 1 Nisan 1337 (1 Nisan 1921) tarihlerinde İnci adıyla yayın yapmıştır. Bu adıyla toplamda 27 sayı yayınlamıştır. 27. sayıdan sonra yaklaşık bir sene yayın hayatına ara vermiştir. 1338 (Haziran 1922), 1339 (Temmuz 1923) tarihleri arasında Yeni İnci adıyla 12 sayı daha yayınlamıştır. Derginin sahibi Sedat Simavi’dir. Ancak bir dönem başyazarlığını Emine Semiye devr almıştır.",
       "İnci dergisinin yayınlanmasında en büyük etken insanların savaş haberi okumaktan sıkılmasının üzerine bir nebze de olsa ruhları dinlendirmektir. Özellikle kadınlara, hayata, aile ve toplumsal ilişkilere rehberlik etmiştir. Birinci Dünya Savaşı’ndan sonra çıkarılan İnci dergisi dört yıl süren harp haberlerini, savaşın acısını hafifletmek için yorulan bedenleri ve zihinleri başka yöne yönlendirmeyi amaçlamıştır. Özellikle de kadınlara hitap eden bir dergi olmasına dikkat etmişlerdir.  Dergi aynı zamanda kadına şiddetin biçimlerini (fiziksel, duygusal, psikolojik, ekonomik, cinsel, sembolik), faillerini (toplumsal aktörler, erkek figürler, kadın figürler, kurumlar, medya) ve mağdurun algısını (içselleştirilmiş, reddedilen, sembolleştirilmiş) edebî kurgular (hikâye ve tefrikalar), toplumsal eleştiri yazıları ve okur mektupları üzerinden farklı boyutlarıyla aktarmıştır. Dönemin yayın anlayışında şiddet metinleştirilirken; kimi zaman ahlaki bir ikaz veya mağduriyet anlatısı olarak işlenmiş, kimi zaman da toplumsal çözülmenin ve savaş koşullarının kaçınılmaz bir sonucu olarak resmedilmiştir."
     ]
