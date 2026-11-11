@@ -103,6 +103,7 @@ export default function Hero() {
     // Kaydırma anında değil, yumuşatılarak ilerle (lerp): kareler arası akıcı geçiş.
     const tick = () => {
       raf = 0;
+      if (!video.paused) video.pause(); // kaydırmayla sürülen video asla kendiliğinden oynamasın
       cur += (target - cur) * 0.14;
       if (Math.abs(target - cur) < 0.004) cur = target;
       if (duration && Math.abs(video.currentTime - cur) > 0.003) video.currentTime = cur;
@@ -115,7 +116,10 @@ export default function Hero() {
       // iOS: video, bir kez oynatılıp durdurulmadan kare atlamayabilir.
       if (!kicked && duration) {
         kicked = true;
-        video.play().then(() => video.pause()).catch(() => {});
+        // Aynı olay içinde oynat + hemen durdur: video kendi kendine ilerlemesin.
+        const started = video.play();
+        video.pause();
+        started?.catch(() => {});
       }
     };
 
