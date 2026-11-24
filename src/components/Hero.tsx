@@ -65,7 +65,6 @@ export default function Hero() {
   const stageRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [scene, setScene] = useState(0);
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -78,6 +77,9 @@ export default function Hero() {
       ...(window.matchMedia("(max-width: 767px)").matches ? ["/video/hero-mobile.mp4"] : []),
       "/video/hero.mp4",
     ];
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      video.poster = "/video/hero-mobile-poster.jpg";
+    }
     let sourceIndex = 0;
     let duration = 0;
     let target = 0;
@@ -126,34 +128,52 @@ export default function Hero() {
       video.src = sources[sourceIndex];
       video.load();
     };
+    // Safari/Firefox/mobil tarayıcılar "loadeddata"yı geç ya da hiç göndermeyebilir;
+    // süre bilgisi gelir gelmez (loadedmetadata) kaydırmayla sürmeye başlarız.
     const onLoaded = () => {
-      duration = video.duration || 0;
-      if (!duration) return;
-      setReady(true);
-      video.currentTime = 0.001;
-      onScroll();
+      const d = video.duration;
+      if (!d || !isFinite(d)) return;
+      duration = d;
+      measure();
+      cur = target;
+      if (Math.abs(video.currentTime - cur) > 0.003) video.currentTime = cur || 0.001;
     };
     const onError = () => {
       if (sourceIndex < sources.length - 1) {
         sourceIndex += 1;
         loadSource();
-      } else {
-        setReady(false);
       }
     };
 
-    video.addEventListener("loadeddata", onLoaded);
+    // Telefonlarda video, bir dokunuş/kaydırma olmadan veri yüklemeyebilir:
+    // ilk kullanıcı hareketinde oynat-durdur ile "uyandır".
+    const wake = () => {
+      if (kicked) return;
+      kicked = true;
+      const p = video.play();
+      video.pause();
+      p?.catch(() => {});
+      if (!duration) video.load();
+    };
+
+    const events = ["loadedmetadata", "loadeddata", "canplay", "durationchange"] as const;
+    events.forEach((e) => video.addEventListener(e, onLoaded));
     video.addEventListener("error", onError);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("touchstart", wake, { passive: true, once: true });
+    window.addEventListener("pointerdown", wake, { passive: true, once: true });
     loadSource();
+    if (video.readyState >= 1) onLoaded();
     const first = requestAnimationFrame(onScroll);
 
     return () => {
-      video.removeEventListener("loadeddata", onLoaded);
+      events.forEach((e) => video.removeEventListener(e, onLoaded));
       video.removeEventListener("error", onError);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("touchstart", wake);
+      window.removeEventListener("pointerdown", wake);
       cancelAnimationFrame(first);
       if (raf) cancelAnimationFrame(raf);
     };
@@ -164,10 +184,13 @@ export default function Hero() {
       id="top"
       className="relative bg-gradient-to-b from-maroon-dark via-maroon to-maroon-dark text-parchment"
     >
-      <div ref={wrapRef} className="relative h-[420svh] motion-reduce:h-auto">
+      <div
+        ref={wrapRef}
+        className="relative h-[420vh] supports-[height:1svh]:h-[420svh] motion-reduce:h-auto"
+      >
         <div
           ref={stageRef}
-          className="sticky top-16 h-[calc(100svh-4rem)] overflow-hidden motion-reduce:static motion-reduce:h-auto motion-reduce:min-h-[calc(100svh-4rem)]"
+          className="sticky top-16 h-[calc(100vh-4rem)] supports-[height:1svh]:h-[calc(100svh-4rem)] overflow-hidden motion-reduce:static motion-reduce:h-auto motion-reduce:min-h-[calc(100svh-4rem)]"
         >
           {/* Katman 1: dekoratif ışık ve nokta deseni */}
           <div
@@ -185,17 +208,19 @@ export default function Hero() {
           />
 
           {/* Katman 2: kaydırmayla ilerleyen video */}
-          <video
-            ref={videoRef}
-            muted
-            playsInline
-            preload="auto"
-            tabIndex={-1}
-            aria-hidden
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:hidden ${
-              ready ? "opacity-100" : "opacity-0"
-            }`}
-          />
+          <div aria-hidden className="absolute inset-0 overflow-hidden motion-reduce:hidden">
+            <video
+              ref={videoRef}
+              muted
+              playsInline
+              preload="auto"
+              poster="/video/hero-poster.jpg"
+              tabIndex={-1}
+              disablePictureInPicture
+              disableRemotePlayback
+              className="absolute left-0 top-0 block h-full w-full max-w-none object-cover object-center"
+            />
+          </div>
 
           {/* Katman 3: yalnızca metnin durduğu yerde okunabilirlik gölgesi */}
           <div
